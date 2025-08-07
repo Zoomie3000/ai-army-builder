@@ -95,7 +95,7 @@ export const Footer = () => {
               <div>
                 <span className="text-xl font-bold text-gradient-advanced">Sentus</span>
                 <span className="text-xl font-bold text-foreground">.ai</span>
-                <Badge variant="secondary" className="ml-2 text-xs">CATALYST</Badge>
+                <Badge variant="secondary" className="ml-2 text-xs">SENTUS AI, INC.</Badge>
               </div>
             </div>
             
@@ -108,15 +108,19 @@ export const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>San Francisco, CA & New York, NY</span>
+                <span>3478 BUSKIRK AVE STE 1000, Pleasant Hill, CA 94523</span>
               </div>
               <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 text-primary" />
-                <span>hello@sentus.ai</span>
+                <span className="space-x-2">
+                  <a href="mailto:contact@sentus.ai" className="hover:text-primary">contact@sentus.ai</a>
+                  <span>•</span>
+                  <a href="mailto:support@sentus.ai" className="hover:text-primary">support@sentus.ai</a>
+                </span>
               </div>
               <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4 text-primary" />
-                <span>+1 (555) 123-4567</span>
+                <a href="tel:+14158537800" className="hover:text-primary">(415) 853-7800</a>
               </div>
             </div>
 
@@ -228,7 +232,7 @@ export const Footer = () => {
       <div className="container mx-auto px-6 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-muted-foreground">
-            © 2025 Sentus.ai. All rights reserved. Made with ❤️ for the future of work.
+            © 2025 SENTUS AI, INC. All rights reserved. Made with ❤️ for the future of work.
           </div>
           
           <div className="flex items-center space-x-6">

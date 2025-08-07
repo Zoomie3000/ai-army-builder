@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { 
   Menu, Bot, BookOpen, Users, MessageSquare, Building2, 
-  Rocket, Shield, Award, ChevronDown, Sparkles 
+  Rocket, Shield, Award, ChevronDown, Sparkles, HelpCircle 
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -17,6 +17,8 @@ export const Header = () => {
     { name: "Agent Catalog", href: "/agents", icon: Bot },
     { name: "Pricing", href: "/pricing", icon: Award },
     { name: "About Us", href: "/about", icon: Users },
+    { name: "Contact", href: "/contact", icon: MessageSquare },
+    { name: "Support", href: "/support", icon: HelpCircle },
   ];
 
   const isActive = (path: string) => location.pathname === path;
