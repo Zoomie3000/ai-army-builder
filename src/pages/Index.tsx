@@ -8,11 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { 
   ArrowRight, Bot, Zap, Shield, Clock, Star, CheckCircle, TrendingUp, Users, Award, Sparkles,
   Cpu, Brain, Target, Rocket, Globe, Settings, Play, ChevronDown, ArrowDown, BarChart3,
   DollarSign, Timer, Briefcase, MessageCircle, FileText, Database, Search, Lock, 
-  Layers, Code, Workflow, BarChart
+  Layers, Code, Workflow, BarChart, Calculator
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { InteractiveROICalculator } from "@/components/InteractiveROICalculator";
@@ -182,38 +183,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden">
+    <div className="min-h-screen">
+      <Header />
+      
       {/* Floating Background Elements */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="organic-blob w-96 h-96 top-10 right-10 opacity-30" />
         <div className="organic-blob organic-blob-2 w-80 h-80 bottom-20 left-10 opacity-20" />
         <div className="organic-blob w-64 h-64 top-1/2 left-1/2 opacity-25" />
       </div>
-
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 glass-morphism border-0">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <Sparkles className="h-8 w-8 text-primary animate-pulse-soft" />
-                <div className="absolute inset-0 h-8 w-8 text-accent animate-rotate-slow opacity-30">
-                  <Cpu className="h-8 w-8" />
-                </div>
-              </div>
-              <span className="text-2xl font-bold text-gradient-advanced">Sentus.ai</span>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#solutions" className="hover:text-primary transition-colors font-medium">Solutions</a>
-              <a href="#agents" className="hover:text-primary transition-colors font-medium">AI Army</a>
-              <a href="#pricing" className="hover:text-primary transition-colors font-medium">Pricing</a>
-              <a href="#roi" className="hover:text-primary transition-colors font-medium">ROI Calculator</a>
-              <Button variant="outline" className="btn-ghost">Login</Button>
-              <Button className="btn-primary">Start Free Trial</Button>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section - Enhanced */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center section-padding">
@@ -225,16 +203,16 @@ const Index = () => {
                   🚀 722+ Elite AI Agents • Zero Resistance Deployment
                 </Badge>
                 
-                <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                  <span className="text-gradient-advanced">Reclaim 20 Hours</span>
+                <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight">
+                  <span className="text-gradient-advanced">Free Your Team.</span>
                   <br />
-                  <span className="text-glow-advanced">a Week</span>
+                  <span className="text-glow-advanced">Evolve Your Business.</span>
                 </h1>
                 
                 <div className="space-y-4 text-xl lg:text-2xl text-muted-foreground max-w-2xl">
                   <p className="leading-relaxed">
-                    Deploy an <span className="text-accent font-bold">AI workforce of 722+ agents</span> in 5 minutes. 
-                    Automate 70% of repetitive tasks without writing a single line of code.
+                    Deploy an intelligent AI workforce in under 5 minutes to automate repetitive tasks 
+                    and accelerate your growth. No code required.
                   </p>
                   <p className="text-primary font-semibold text-xl">
                     Average savings: <span className="text-accent">$27,600/month</span> • ROI guaranteed in 30 days
@@ -253,7 +231,7 @@ const Index = () => {
                     />
                   </div>
                   <Button onClick={handleFreeTrial} size="lg" className="btn-primary text-lg px-8 h-14 min-w-[200px]">
-                    Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
+                    Start Your 14-Day Free Trial <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
 
@@ -966,77 +944,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Enhanced Footer */}
-      <footer className="section-divider section-padding-sm">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-5 gap-8 mb-12">
-            <div className="md:col-span-2 space-y-6">
-              <div className="flex items-center space-x-3">
-                <Sparkles className="h-8 w-8 text-primary" />
-                <span className="text-2xl font-bold text-gradient-advanced">Sentus.ai</span>
-              </div>
-              <p className="text-muted-foreground text-lg max-w-md">
-                Unleash your AI army. Conquer inefficiency. Dominate tomorrow.
-                The future of work is here, and Sentus.ai owns it.
-              </p>
-              <div className="flex space-x-4">
-                <Button variant="outline" className="btn-ghost">
-                  <MessageCircle className="h-5 w-5 mr-2" />
-                  Contact Sales
-                </Button>
-                <Button variant="outline" className="btn-ghost">
-                  <Play className="h-5 w-5 mr-2" />
-                  Watch Demo
-                </Button>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-lg mb-6">Product</h4>
-              <ul className="space-y-3 text-muted-foreground">
-                <li><a href="#agents" className="hover:text-primary transition-colors">AI Agents</a></li>
-                <li><a href="#pricing" className="hover:text-primary transition-colors">Pricing</a></li>
-                <li><a href="#roi" className="hover:text-primary transition-colors">ROI Calculator</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Integrations</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Security</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-lg mb-6">Solutions</h4>
-              <ul className="space-y-3 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Finance & Accounting</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Customer Support</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Data Processing</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Sales Automation</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">HR & Operations</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-lg mb-6">Resources</h4>
-              <ul className="space-y-3 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Case Studies</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Webinars</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Status Page</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <Separator className="mb-8" />
-          
-          <div className="flex flex-col md:flex-row justify-between items-center text-muted-foreground">
-            <p>&copy; 2025 Sentus.ai. All rights reserved. Built for the AI revolution.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

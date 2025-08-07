@@ -15,10 +15,8 @@ export const Header = () => {
   const navigation = [
     { name: "Solutions", href: "/solutions", icon: Building2 },
     { name: "Agent Catalog", href: "/agents", icon: Bot },
-    { name: "Technology", href: "/technology", icon: Rocket },
-    { name: "Education", href: "/education", icon: BookOpen },
-    { name: "Blog", href: "/blog", icon: MessageSquare },
-    { name: "Company", href: "/company", icon: Users },
+    { name: "Pricing", href: "/pricing", icon: Award },
+    { name: "About Us", href: "/about", icon: Users },
   ];
 
   const isActive = (path: string) => location.pathname === path;
