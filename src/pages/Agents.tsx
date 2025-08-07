@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,161 +12,94 @@ import {
   FileText, Calculator, MessageCircle, Database, Briefcase, Settings,
   ShoppingCart, TrendingUp, Shield, Globe, Cpu, Brain
 } from "lucide-react";
+import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
+import { agents, type Agent } from "@/data/agents";
 
 const Agents = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedIndustry, setSelectedIndustry] = useState("all");
 
-  const agentCategories = {
-    "Finance & Accounting": {
-      icon: Calculator,
-      color: "bg-green-500/10 text-green-400",
-      agents: [
-        {
-          name: "Invoice Processor TITAN",
-          description: "AI agent that processes invoices with 99.7% accuracy, extracting data and routing for approval",
-          pricing: "Saves $27,600/month",
-          deployTime: "3 minutes",
-          rating: 4.9,
-          deployments: "2,847",
-          tags: ["Finance", "Automation", "TITAN Class"],
-          features: ["OCR Recognition", "Auto-Approval", "Multi-format Support", "Compliance Checking"]
-        },
-        {
-          name: "Expense Guardian",
-          description: "Monitors and categorizes expenses automatically, flags anomalies and policy violations",
-          pricing: "Saves $15,200/month",
-          deployTime: "2 minutes",
-          rating: 4.8,
-          deployments: "1,923",
-          tags: ["Finance", "Compliance"],
-          features: ["Real-time Monitoring", "Policy Enforcement", "Fraud Detection", "Reporting"]
-        },
-        {
-          name: "Financial Forecaster",
-          description: "Analyzes historical data to predict cash flow and revenue trends with ML algorithms",
-          pricing: "Saves $35,400/month",
-          deployTime: "5 minutes",
-          rating: 4.9,
-          deployments: "1,456",
-          tags: ["Finance", "Analytics", "TITAN Class"],
-          features: ["Predictive Analytics", "Scenario Planning", "Risk Assessment", "Executive Dashboards"]
-        }
-      ]
-    },
-    "Customer Support": {
-      icon: MessageCircle,
-      color: "bg-blue-500/10 text-blue-400",
-      agents: [
-        {
-          name: "Support Orchestrator TITAN",
-          description: "Handles 80% of customer inquiries across all channels with human-like responses",
-          pricing: "Saves $45,600/month",
-          deployTime: "4 minutes",
-          rating: 4.9,
-          deployments: "3,234",
-          tags: ["Support", "NLP", "TITAN Class"],
-          features: ["Multi-channel", "Sentiment Analysis", "Escalation Logic", "Knowledge Base Integration"]
-        },
-        {
-          name: "Ticket Triager",
-          description: "Automatically categorizes and prioritizes support tickets based on urgency and impact",
-          pricing: "Saves $12,800/month",
-          deployTime: "2 minutes",
-          rating: 4.7,
-          deployments: "2,145",
-          tags: ["Support", "Automation"],
-          features: ["Smart Routing", "Priority Scoring", "SLA Monitoring", "Team Load Balancing"]
-        }
-      ]
-    },
-    "Sales & Marketing": {
-      icon: TrendingUp,
-      color: "bg-purple-500/10 text-purple-400",
-      agents: [
-        {
-          name: "Lead Qualifier TITAN",
-          description: "Scores and qualifies leads using 50+ data points, increasing conversion rates by 340%",
-          pricing: "Saves $52,100/month",
-          deployTime: "3 minutes",
-          rating: 4.9,
-          deployments: "2,678",
-          tags: ["Sales", "Lead Generation", "TITAN Class"],
-          features: ["Behavioral Scoring", "Intent Detection", "CRM Integration", "Predictive Analytics"]
-        },
-        {
-          name: "Campaign Optimizer",
-          description: "Automatically optimizes ad campaigns across platforms for maximum ROI",
-          pricing: "Saves $28,400/month",
-          deployTime: "4 minutes",
-          rating: 4.8,
-          deployments: "1,789",
-          tags: ["Marketing", "Optimization"],
-          features: ["Multi-platform", "A/B Testing", "Budget Allocation", "Performance Tracking"]
-        }
-      ]
-    },
-    "Operations": {
-      icon: Settings,
-      color: "bg-orange-500/10 text-orange-400",
-      agents: [
-        {
-          name: "Workflow Orchestrator TITAN",
-          description: "Coordinates complex business processes across multiple systems and teams",
-          pricing: "Saves $67,200/month",
-          deployTime: "6 minutes",
-          rating: 4.9,
-          deployments: "1,923",
-          tags: ["Operations", "Workflow", "TITAN Class"],
-          features: ["Process Mapping", "Error Handling", "Status Tracking", "Performance Analytics"]
-        },
-        {
-          name: "Data Synchronizer",
-          description: "Keeps data consistent across all business systems in real-time",
-          pricing: "Saves $19,600/month",
-          deployTime: "3 minutes",
-          rating: 4.7,
-          deployments: "2,456",
-          tags: ["Operations", "Data"],
-          features: ["Real-time Sync", "Conflict Resolution", "Data Validation", "Audit Trails"]
-        }
-      ]
-    }
+  const CATEGORY_META: Record<string, { icon: any; color: string }> = {
+    "Finance & Accounting": { icon: Calculator, color: "bg-green-500/10 text-green-400" },
+    "Customer Support": { icon: MessageCircle, color: "bg-blue-500/10 text-blue-400" },
+    "Sales & Marketing": { icon: TrendingUp, color: "bg-purple-500/10 text-purple-400" },
+    "Operations": { icon: Settings, color: "bg-orange-500/10 text-orange-400" },
   };
 
+  const grouped = agents.reduce((acc, agent) => {
+    const meta = CATEGORY_META[agent.category];
+    if (!acc[agent.category]) {
+      acc[agent.category] = {
+        icon: meta?.icon || Bot,
+        color: meta?.color || "bg-accent/10 text-accent",
+        agents: [],
+      };
+    }
+    acc[agent.category].agents.push(agent);
+    return acc;
+  }, {} as Record<string, { icon: any; color: string; agents: Agent[] }>);
+
   const industries = [
-    "All Industries", "Healthcare", "Finance", "Technology", "Manufacturing", 
+    "All Industries", "Healthcare", "Finance", "Technology", "Manufacturing",
     "Retail", "Legal", "Real Estate", "Education", "Non-profit"
   ];
 
-  const filteredAgents = Object.entries(agentCategories).reduce((acc, [category, data]) => {
-    const filtered = data.agents.filter(agent => {
-      const matchesSearch = agent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           agent.description.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory === "all" || category.toLowerCase().includes(selectedCategory.toLowerCase());
-      return matchesSearch && matchesCategory;
+  const filteredAgents = Object.entries(grouped).reduce((acc, [category, data]) => {
+    const filtered = data.agents.filter((agent) => {
+      const matchesSearch =
+        agent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        agent.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "all" ||
+        category.toLowerCase().includes(selectedCategory.toLowerCase());
+      const matchesIndustry =
+        selectedIndustry === "all" ||
+        selectedIndustry === "all industries" ||
+        agent.industries.includes(selectedIndustry);
+      return matchesSearch && matchesCategory && matchesIndustry;
     });
-    
+
     if (filtered.length > 0) {
       acc[category] = { ...data, agents: filtered };
     }
-    
-    return acc;
-  }, {} as typeof agentCategories);
 
-  const totalAgents = Object.values(agentCategories).reduce((sum, category) => sum + category.agents.length, 0);
+    return acc;
+  }, {} as typeof grouped);
+
+  const formatCurrency = (amount: number) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(amount);
+
+  const totalAgents = agents.length;
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <SEO
+        title="AI Agent Arsenal | Sentus.ai"
+        description="Browse and deploy specialized AI agents across Finance, Support, Sales & Marketing, and Operations. Deploy in minutes with real ROI."
+        canonical={typeof window !== 'undefined' ? `${window.location.origin}/agents` : undefined}
+      />
+      <StructuredData
+        type="CollectionPage"
+        data={{
+          name: "AI Agent Arsenal",
+          description: "Catalog of deployable AI agents across business functions",
+          numberOfItems: totalAgents,
+        }}
+      />
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 section-padding-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto mb-16">
             <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
-              722+ AI Agents Available
+              {totalAgents} AI Agents Available
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-gradient-advanced mb-6">
               Your AI Agent Arsenal
@@ -195,7 +129,7 @@ const Agents = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Categories</SelectItem>
-                    {Object.keys(agentCategories).map((category) => (
+                    {Object.keys(grouped).map((category) => (
                       <SelectItem key={category} value={category.toLowerCase()}>
                         {category}
                       </SelectItem>
@@ -239,71 +173,73 @@ const Agents = () => {
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {data.agents.map((agent, index) => (
-                    <Card key={index} className="glass-card hover-lift cursor-pointer group">
-                      <CardHeader>
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <CardTitle className="text-lg text-foreground group-hover:text-primary transition-colors">
-                              {agent.name}
-                            </CardTitle>
-                            <div className="flex items-center mt-2 space-x-4 text-sm text-muted-foreground">
-                              <div className="flex items-center">
-                                <Star className="w-4 h-4 text-yellow-400 mr-1" />
-                                {agent.rating}
-                              </div>
-                              <div className="flex items-center">
-                                <Users className="w-4 h-4 mr-1" />
-                                {agent.deployments}
+                    <Link to={`/agents/${agent.slug}`} key={index} className="group block" aria-label={`View details for ${agent.name}`}>
+                      <Card className="glass-card hover-lift cursor-pointer">
+                        <CardHeader>
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <CardTitle className="text-lg text-foreground group-hover:text-primary transition-colors">
+                                {agent.name}
+                              </CardTitle>
+                              <div className="flex items-center mt-2 space-x-4 text-sm text-muted-foreground">
+                                <div className="flex items-center">
+                                  <Star className="w-4 h-4 text-yellow-400 mr-1" />
+                                  {agent.rating}
+                                </div>
+                                <div className="flex items-center">
+                                  <Users className="w-4 h-4 mr-1" />
+                                  {agent.deployments}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <Badge className="bg-success/10 text-success">
-                            {agent.deployTime}
-                          </Badge>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription className="text-muted-foreground mb-4 leading-relaxed">
-                          {agent.description}
-                        </CardDescription>
-                        
-                        <div className="mb-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-sm font-medium text-foreground">Estimated Savings</span>
-                            <span className="text-lg font-bold text-success">{agent.pricing}</span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {agent.tags.map((tag, tagIndex) => (
-                            <Badge key={tagIndex} variant="secondary" className="text-xs">
-                              {tag}
+                            <Badge className="bg-success/10 text-success">
+                              {agent.deployTime}
                             </Badge>
-                          ))}
-                        </div>
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <CardDescription className="text-muted-foreground mb-4 leading-relaxed">
+                            {agent.description}
+                          </CardDescription>
+                          
+                          <div className="mb-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-sm font-medium text-foreground">Estimated Savings</span>
+                              <span className="text-lg font-bold text-success">{formatCurrency(agent.estimatedSavingsPerMonth)}/month</span>
+                            </div>
+                          </div>
 
-                        <div className="space-y-2 mb-6">
-                          <p className="text-sm font-medium text-foreground">Key Features:</p>
-                          <ul className="text-sm text-muted-foreground space-y-1">
-                            {agent.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-center">
-                                <Zap className="w-3 h-3 text-accent mr-2" />
-                                {feature}
-                              </li>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {agent.tags.map((tag, tagIndex) => (
+                              <Badge key={tagIndex} variant="secondary" className="text-xs">
+                                {tag}
+                              </Badge>
                             ))}
-                          </ul>
-                        </div>
+                          </div>
 
-                        <div className="flex space-x-2">
-                          <Button className="flex-1 btn-primary">
-                            Deploy Agent
-                          </Button>
-                          <Button variant="outline" size="sm" className="btn-ghost">
-                            Demo
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
+                          <div className="space-y-2 mb-6">
+                            <p className="text-sm font-medium text-foreground">Key Features:</p>
+                            <ul className="text-sm text-muted-foreground space-y-1">
+                              {agent.features.map((feature, featureIndex) => (
+                                <li key={featureIndex} className="flex items-center">
+                                  <Zap className="w-3 h-3 text-accent mr-2" />
+                                  {feature}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="flex space-x-2">
+                            <Button className="flex-1 btn-primary">
+                              Deploy Agent
+                            </Button>
+                            <Button variant="outline" size="sm" className="btn-ghost">
+                              Demo
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
                   ))}
                 </div>
               </div>
