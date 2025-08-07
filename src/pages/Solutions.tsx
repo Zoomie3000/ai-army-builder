@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { SEO } from "@/components/SEO";
+import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { 
   Briefcase, Users, DollarSign, HeartHandshake, Building2, 
   ShoppingCart, FileText, Calculator, MessageCircle, Target,
@@ -164,6 +167,11 @@ const Solutions = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="AI Solutions by Role & Industry | Sentus AI"
+        description="Discover how Sentus AI automates finance, operations, sales, and support with measurable ROI. Industry-specific solutions and 722+ elite agents."
+        canonical="https://sentus.ai/solutions"
+      />
       <Header />
       
       {/* Hero Section */}
@@ -284,6 +292,17 @@ const Solutions = () => {
               </div>
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+
+      {/* Social Proof */}
+      <section className="section-padding">
+        <div className="container mx-auto px-6">
+          <div className="text-center space-y-4 mb-10">
+            <h2 className="text-4xl font-bold">What Customers Say</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Real results from real teams using Sentus AI</p>
+          </div>
+          <TestimonialsCarousel />
         </div>
       </section>
 
@@ -420,6 +439,7 @@ const Solutions = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

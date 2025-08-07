@@ -13,8 +13,14 @@ const Support = () => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const honeypot = new FormData(form).get("website");
+    if (honeypot) {
+      form.reset();
+      return; // likely spam
+    }
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
@@ -22,7 +28,7 @@ const Support = () => {
         title: "Support request received",
         description: "We'll get back to you within 24 business hours.",
       });
-      (e.target as HTMLFormElement).reset();
+      form.reset();
     }, 800);
   };
 
@@ -55,6 +61,8 @@ const Support = () => {
                 </div>
                 <Input name="subject" placeholder="Subject" required />
                 <Textarea name="message" placeholder="Describe the issue" required rows={6} />
+                {/* Honeypot field to deter bots */}
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                 <Button type="submit" className="btn-primary" disabled={submitting}>
                   {submitting ? "Submitting..." : "Submit Ticket"}
                 </Button>

@@ -20,6 +20,7 @@ import { InteractiveROICalculator } from "@/components/InteractiveROICalculator"
 import heroImage from "@/assets/hero-ai-command-center.jpg";
 import agentsImage from "@/assets/ai-agents-working.jpg";
 import roiImage from "@/assets/roi-dashboard.jpg";
+import { StructuredData } from "@/components/StructuredData";
 
 const Index = () => {
   const { toast } = useToast();
@@ -184,6 +185,28 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <StructuredData
+        type="Organization"
+        data={{
+          name: "SENTUS AI, INC.",
+          url: "https://sentus.ai",
+          email: "contact@sentus.ai",
+          telephone: "+1-415-853-7800",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "3478 BUSKIRK AVE STE 1000",
+            addressLocality: "Pleasant Hill",
+            addressRegion: "CA",
+            postalCode: "94523",
+            addressCountry: "US",
+          },
+          contactPoint: [
+            { "@type": "ContactPoint", contactType: "customer support", email: "support@sentus.ai" },
+            { "@type": "ContactPoint", contactType: "sales", email: "sales@sentus.ai" },
+            { "@type": "ContactPoint", contactType: "privacy", email: "privacy@sentus.ai" },
+          ],
+        }}
+      />
       <Header />
       
       {/* Floating Background Elements */}
