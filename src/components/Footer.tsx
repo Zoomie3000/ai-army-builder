@@ -35,6 +35,7 @@ export const Footer = () => {
   ];
 
   const resourcesLinks = [
+    { name: "FAQ", href: "/faq" },
     { name: "Help Center", href: "/help" },
     { name: "Community", href: "/community" },
     { name: "Status", href: "/status" },

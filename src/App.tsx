@@ -16,7 +16,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Press from "./pages/Press";
 import Partners from "./pages/Partners";
-
+import FAQ from "./pages/FAQ";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -37,6 +37,7 @@ const App = () => (
           <Route path="/terms" element={<Terms />} />
           <Route path="/press" element={<Press />} />
           <Route path="/partners" element={<Partners />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
