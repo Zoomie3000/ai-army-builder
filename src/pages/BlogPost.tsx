@@ -3,10 +3,18 @@ import { useParams, Link, useLocation } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
+import { AuthorBio } from "@/components/AuthorBio";
 import { blogPosts } from "@/data/blog-posts";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, User, ArrowLeft, Share2 } from "lucide-react";
+import imgAgents from "@/assets/blog-ai-agents.jpg";
+import imgAutomation from "@/assets/blog-automation.jpg";
+import imgCaseStudies from "@/assets/blog-case-studies.jpg";
+import imgIndustryInsights from "@/assets/blog-industry-insights.jpg";
+import imgProductUpdates from "@/assets/blog-product-updates.jpg";
+import imgTutorials from "@/assets/blog-tutorials.jpg";
+import imgThoughtLeadership from "@/assets/blog-thought-leadership.jpg";
 
 const origin = typeof window !== "undefined" ? window.location.origin : "https://sentus.ai";
 
@@ -32,6 +40,18 @@ const BlogPost = () => {
 
   const canonical = `${origin}/blog/${post.slug}`;
 
+  const categoryImageMap: Record<string, string> = {
+    "AI Agents": imgAgents,
+    "Automation": imgAutomation,
+    "Case Studies": imgCaseStudies,
+    "Industry Insights": imgIndustryInsights,
+    "Product Updates": imgProductUpdates,
+    "Thought Leadership": imgThoughtLeadership,
+    "Tutorials": imgTutorials,
+  };
+  const getPostImage = (category: string) => categoryImageMap[category] || imgThoughtLeadership;
+  const hero = post.heroImage || getPostImage(post.category);
+
   const articleLd = {
     headline: post.title,
     description: post.description,
@@ -41,7 +61,7 @@ const BlogPost = () => {
     publisher: { "@type": "Organization", name: "Sentus.ai" },
     mainEntityOfPage: canonical,
     keywords: post.tags.join(", "),
-    image: post.heroImage || `${origin}/placeholder.svg`,
+    image: hero,
     url: canonical,
   };
 
@@ -56,10 +76,16 @@ const BlogPost = () => {
   // naive markdown to paragraphs (keep simple)
   const paragraphs = post.content.split(/\n\n+/g);
 
+  const relatedPosts = useMemo(() => {
+    return blogPosts
+      .filter((p) => p.slug !== post.slug && (p.category === post.category || p.tags.some((t) => post.tags.includes(t))))
+      .slice(0, 3);
+  }, [post]);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <SEO title={`${post.title} | Sentus.ai Blog`} description={post.description} canonical={canonical} />
+      <SEO title={`${post.title} | Sentus.ai Blog`} description={post.description} canonical={canonical} image={hero} type="article" />
       <StructuredData type="BlogPosting" data={articleLd} />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
@@ -69,6 +95,16 @@ const BlogPost = () => {
           </div>
           <h1 className="text-4xl font-bold text-foreground mb-4">{post.title}</h1>
           <p className="text-lg text-muted-foreground mb-6">{post.excerpt}</p>
+
+          <figure className="mb-10">
+            <img
+              src={hero}
+              alt={`${post.category} hero image for ${post.title}`}
+              className="w-full h-auto rounded-2xl"
+              loading="lazy"
+            />
+            <figcaption className="sr-only">Illustrative image for the article {post.title}</figcaption>
+          </figure>
 
           <div className="flex items-center justify-between mb-10 text-sm text-muted-foreground">
             <div className="flex items-center space-x-4">
@@ -86,6 +122,8 @@ const BlogPost = () => {
               <Button variant="ghost" size="sm" onClick={share}><Share2 className="w-4 h-4 mr-2"/>Share</Button>
             </div>
           </div>
+
+          <AuthorBio name={post.author} role={post.role} />
 
           <div className="prose prose-invert max-w-none">
             {paragraphs.map((p, i) => (
@@ -116,6 +154,28 @@ const BlogPost = () => {
               />
             </section>
           )}
+
+          <section className="mt-12">
+            <h2 className="text-2xl font-semibold text-foreground mb-6">Related Articles</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {relatedPosts.map((rp) => (
+                <Link key={rp.slug} to={`/blog/${rp.slug}`} className="group">
+                  <div className="rounded-xl overflow-hidden glass-card">
+                    <img
+                      src={getPostImage(rp.category)}
+                      alt={`${rp.category} related article thumbnail for ${rp.title}`}
+                      className="w-full h-32 object-cover"
+                      loading="lazy"
+                    />
+                    <div className="p-4">
+                      <Badge variant="secondary" className="text-[10px] mb-2">{rp.category}</Badge>
+                      <p className="font-medium group-hover:text-primary transition-colors line-clamp-2">{rp.title}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
 
           <hr className="my-10 border-border/20" />
 

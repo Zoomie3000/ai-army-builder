@@ -4,21 +4,29 @@ interface SEOProps {
   title: string;
   description?: string;
   canonical?: string;
+  image?: string;
+  type?: string; // e.g., article, website
 }
 
 // Lightweight SEO helper without external deps
-export const SEO = ({ title, description, canonical }: SEOProps) => {
+export const SEO = ({ title, description, canonical, image, type = "article" }: SEOProps) => {
   useEffect(() => {
     if (title) document.title = title;
 
-    if (description) {
-      let meta = document.querySelector('meta[name="description"]');
-      if (!meta) {
-        meta = document.createElement('meta');
-        meta.setAttribute('name', 'description');
-        document.head.appendChild(meta);
+    const upsertMeta = (selector: string, attr: "name" | "property", attrValue: string, content: string) => {
+      let el = document.querySelector(`${selector}[${attr}="${attrValue}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, attrValue);
+        document.head.appendChild(el);
       }
-      meta.setAttribute('content', description);
+      el.setAttribute('content', content);
+    };
+
+    if (description) {
+      upsertMeta('meta', 'name', 'description', description);
+      upsertMeta('meta', 'property', 'og:description', description);
+      upsertMeta('meta', 'name', 'twitter:description', description);
     }
 
     if (canonical) {
@@ -29,8 +37,22 @@ export const SEO = ({ title, description, canonical }: SEOProps) => {
         document.head.appendChild(link);
       }
       link.setAttribute('href', canonical);
+      upsertMeta('meta', 'property', 'og:url', canonical);
     }
-  }, [title, description, canonical]);
+
+    if (title) {
+      upsertMeta('meta', 'property', 'og:title', title);
+      upsertMeta('meta', 'name', 'twitter:title', title);
+    }
+
+    upsertMeta('meta', 'property', 'og:type', type);
+    upsertMeta('meta', 'name', 'twitter:card', image ? 'summary_large_image' : 'summary');
+
+    if (image) {
+      upsertMeta('meta', 'property', 'og:image', image);
+      upsertMeta('meta', 'name', 'twitter:image', image);
+    }
+  }, [title, description, canonical, image, type]);
 
   return null;
 };

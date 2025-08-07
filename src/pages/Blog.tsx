@@ -11,6 +11,13 @@ import { StructuredData } from "@/components/StructuredData";
 import { blogPosts as allPosts, blogBaseUrl } from "@/data/blog-posts";
 import { Calendar, Clock, User, ArrowRight, TrendingUp, Bot, Zap,
   Brain, Target, Globe, Shield, Rocket, Users, BookOpen } from "lucide-react";
+import imgAgents from "@/assets/blog-ai-agents.jpg";
+import imgAutomation from "@/assets/blog-automation.jpg";
+import imgCaseStudies from "@/assets/blog-case-studies.jpg";
+import imgIndustryInsights from "@/assets/blog-industry-insights.jpg";
+import imgProductUpdates from "@/assets/blog-product-updates.jpg";
+import imgTutorials from "@/assets/blog-tutorials.jpg";
+import imgThoughtLeadership from "@/assets/blog-thought-leadership.jpg";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -21,6 +28,17 @@ const Blog = () => {
     "Product Updates", "Thought Leadership", "Tutorials"
   ];
   const blogPosts = useMemo(() => allPosts, []);
+
+  const categoryImageMap: Record<string, string> = {
+    "AI Agents": imgAgents,
+    "Automation": imgAutomation,
+    "Case Studies": imgCaseStudies,
+    "Industry Insights": imgIndustryInsights,
+    "Product Updates": imgProductUpdates,
+    "Thought Leadership": imgThoughtLeadership,
+    "Tutorials": imgTutorials,
+  };
+  const getPostImage = (category: string) => categoryImageMap[category] || imgThoughtLeadership;
 
   const featuredPost = useMemo(() => blogPosts.find(p => p.featured) ?? blogPosts[0], [blogPosts]);
   const filteredPosts = blogPosts.filter(post => {
@@ -141,10 +159,12 @@ const Blog = () => {
               </div>
               
               <div className="relative">
-                <div className="w-full h-80 lg:h-full rounded-2xl bg-gradient-primary opacity-20"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Bot className="w-24 h-24 text-primary animate-pulse" />
-                </div>
+                <img
+                  src={getPostImage(featuredPost.category)}
+                  alt={`${featuredPost.category} article hero image for ${featuredPost.title}`}
+                  className="w-full h-80 lg:h-full object-cover rounded-2xl"
+                  loading="lazy"
+                />
               </div>
             </div>
           </Card>
@@ -165,14 +185,12 @@ const Blog = () => {
             {filteredPosts.map((post, index) => (
               <Card key={index} className="glass-card hover-lift cursor-pointer group">
                 <div className="relative">
-                  <div className="w-full h-48 rounded-t-lg bg-gradient-professional opacity-30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center rounded-t-lg">
-                    {post.category === "AI Agents" && <Bot className="w-12 h-12 text-primary" />}
-                    {post.category === "Case Studies" && <TrendingUp className="w-12 h-12 text-success" />}
-                    {post.category === "Tutorials" && <BookOpen className="w-12 h-12 text-accent" />}
-                    {post.category === "Product Updates" && <Rocket className="w-12 h-12 text-secondary" />}
-                    {post.category === "Industry Insights" && <Globe className="w-12 h-12 text-primary" />}
-                  </div>
+                  <img
+                    src={getPostImage(post.category)}
+                    alt={`${post.category} article thumbnail for ${post.title}`}
+                    className="w-full h-48 object-cover rounded-t-lg"
+                    loading="lazy"
+                  />
                   {post.featured && (
                     <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
                       Featured
