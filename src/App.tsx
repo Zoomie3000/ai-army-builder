@@ -20,6 +20,10 @@ import Partners from "./pages/Partners";
 import FAQ from "./pages/FAQ";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Services from "./pages/Services";
+import Consulting from "./pages/services/Consulting";
+import CustomAgents from "./pages/services/CustomAgents";
+import Integrations from "./pages/services/Integrations";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -31,6 +35,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/solutions" element={<Solutions />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/consulting" element={<Consulting />} />
+          <Route path="/services/custom-agents" element={<CustomAgents />} />
+          <Route path="/services/integrations" element={<Integrations />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/agents/:slug" element={<AgentDetail />} />
           <Route path="/blog" element={<Blog />} />
