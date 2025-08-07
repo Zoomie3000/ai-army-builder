@@ -25,33 +25,10 @@ import {
   LifeBuoy,
 } from "lucide-react";
 
-// Types
-interface FAQCategory {
-  id:
-    | "general"
-    | "security"
-    | "pricing"
-    | "implementation"
-    | "technical"
-    | "enterprise"
-    | "performance"
-    | "industries"
-    | "ai_basics"
-    | "differentiation"
-    | "future"
-    | "ethics"
-    | "integration"
-    | "scaling"
-    | "support";
-  name: string;
-  icon: any;
-}
+import { faqData } from "@/data/faqData";
+import type { FAQCategory, FAQItem } from "@/types/faq";
 
-interface FAQItem {
-  category: FAQCategory["id"];
-  question: string;
-  answer: string;
-}
+// Types
 
 const categories: FAQCategory[] = [
   { id: "general", name: "General", icon: Building2 },
