@@ -4,25 +4,45 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Header } from "@/components/Header";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
 import { blogPosts as allPosts, blogBaseUrl } from "@/data/blog-posts";
 import { Calendar, Clock, User, ArrowRight, TrendingUp, Bot, Zap,
   Brain, Target, Globe, Shield, Rocket, Users, BookOpen } from "lucide-react";
 import { BlogImage } from "@/components/BlogImage";
-import imgAgents from "@/assets/blog-ai-agents.jpg";
-import imgAutomation from "@/assets/blog-automation.jpg";
-import imgCaseStudies from "@/assets/blog-case-studies.jpg";
-import imgIndustryInsights from "@/assets/blog-industry-insights.jpg";
-import imgProductUpdates from "@/assets/blog-product-updates.jpg";
-import imgTutorials from "@/assets/blog-tutorials.jpg";
-import imgThoughtLeadership from "@/assets/blog-thought-leadership.jpg";
+import illFlatAiAgents from "@/assets/illustrations/flat-ai-agents.webp";
+import illFlatAutomation from "@/assets/illustrations/flat-automation.webp";
+import illFlatCaseStudies from "@/assets/illustrations/flat-case-studies.webp";
+import illFlatIndustryInsights from "@/assets/illustrations/flat-industry-insights.webp";
+import illFlatProductUpdates from "@/assets/illustrations/flat-product-updates.webp";
+import illFlatThoughtLeadership from "@/assets/illustrations/flat-thought-leadership.webp";
+import illFlatTutorials from "@/assets/illustrations/flat-tutorials.webp";
+import illIsoAiAgents from "@/assets/illustrations/isometric-ai-agents.webp";
+import illIsoAutomation from "@/assets/illustrations/isometric-automation.webp";
+import illIsoCaseStudies from "@/assets/illustrations/isometric-case-studies.webp";
+import illIsoIndustryInsights from "@/assets/illustrations/isometric-industry-insights.webp";
+import illIsoProductUpdates from "@/assets/illustrations/isometric-product-updates.webp";
+import illIsoThoughtLeadership from "@/assets/illustrations/isometric-thought-leadership.webp";
+import illIsoTutorials from "@/assets/illustrations/isometric-tutorials.webp";
+import illLineAiAgents from "@/assets/illustrations/line-ai-agents.webp";
+import illLineAutomation from "@/assets/illustrations/line-automation.webp";
+import illLineCaseStudies from "@/assets/illustrations/line-case-studies.webp";
+import illLineIndustryInsights from "@/assets/illustrations/line-industry-insights.webp";
+import illLineProductUpdates from "@/assets/illustrations/line-product-updates.webp";
+import illLineThoughtLeadership from "@/assets/illustrations/line-thought-leadership.webp";
+import illLineTutorials from "@/assets/illustrations/line-tutorials.webp";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+
+  type ArtStyle = 'flat' | 'isometric' | 'line';
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialStyle = (searchParams.get('style') as ArtStyle) || 'flat';
+  const [artStyle, setArtStyle] = useState<ArtStyle>(initialStyle);
 
   const categories = [
     "All", "AI Agents", "Automation", "Case Studies", "Industry Insights", 
@@ -30,16 +50,36 @@ const Blog = () => {
   ];
   const blogPosts = useMemo(() => allPosts, []);
 
-  const categoryImageMap: Record<string, string> = {
-    "AI Agents": imgAgents,
-    "Automation": imgAutomation,
-    "Case Studies": imgCaseStudies,
-    "Industry Insights": imgIndustryInsights,
-    "Product Updates": imgProductUpdates,
-    "Thought Leadership": imgThoughtLeadership,
-    "Tutorials": imgTutorials,
+  const imageMapByStyle: Record<ArtStyle, Record<string, string>> = {
+    flat: {
+      "AI Agents": illFlatAiAgents,
+      "Automation": illFlatAutomation,
+      "Case Studies": illFlatCaseStudies,
+      "Industry Insights": illFlatIndustryInsights,
+      "Product Updates": illFlatProductUpdates,
+      "Thought Leadership": illFlatThoughtLeadership,
+      "Tutorials": illFlatTutorials,
+    },
+    isometric: {
+      "AI Agents": illIsoAiAgents,
+      "Automation": illIsoAutomation,
+      "Case Studies": illIsoCaseStudies,
+      "Industry Insights": illIsoIndustryInsights,
+      "Product Updates": illIsoProductUpdates,
+      "Thought Leadership": illIsoThoughtLeadership,
+      "Tutorials": illIsoTutorials,
+    },
+    line: {
+      "AI Agents": illLineAiAgents,
+      "Automation": illLineAutomation,
+      "Case Studies": illLineCaseStudies,
+      "Industry Insights": illLineIndustryInsights,
+      "Product Updates": illLineProductUpdates,
+      "Thought Leadership": illLineThoughtLeadership,
+      "Tutorials": illLineTutorials,
+    },
   };
-  const getPostImage = (category: string) => categoryImageMap[category] || imgThoughtLeadership;
+  const getPostImage = (category: string) => imageMapByStyle[artStyle][category] || imageMapByStyle[artStyle]["Thought Leadership"];
 
   const featuredPost = useMemo(() => blogPosts.find(p => p.featured) ?? blogPosts[0], [blogPosts]);
   const filteredPosts = blogPosts.filter(post => {
@@ -91,6 +131,25 @@ const Blog = () => {
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
+              <div className="mt-5 flex items-center justify-center">
+                <ToggleGroup
+                  type="single"
+                  value={artStyle}
+                  onValueChange={(v) => {
+                    if (v) {
+                      setArtStyle(v as ArtStyle);
+                      const sp = new URLSearchParams(searchParams);
+                      sp.set('style', v);
+                      setSearchParams(sp);
+                    }
+                  }}
+                  className="bg-background/50 border border-border/20 rounded-full px-1 py-1"
+                >
+                  <ToggleGroupItem value="flat" className="px-4 py-2 rounded-full text-sm">A. Flat</ToggleGroupItem>
+                  <ToggleGroupItem value="isometric" className="px-4 py-2 rounded-full text-sm">B. Isometric</ToggleGroupItem>
+                  <ToggleGroupItem value="line" className="px-4 py-2 rounded-full text-sm">C. Line-art</ToggleGroupItem>
+                </ToggleGroup>
               </div>
             </div>
           </div>
