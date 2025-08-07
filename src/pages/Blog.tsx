@@ -1,0 +1,351 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Header } from "@/components/Header";
+import {
+  Calendar, Clock, User, ArrowRight, TrendingUp, Bot, Zap,
+  Brain, Target, Globe, Shield, Rocket, Users, BookOpen
+} from "lucide-react";
+
+const Blog = () => {
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const categories = [
+    "All", "AI Agents", "Automation", "Case Studies", "Industry Insights", 
+    "Product Updates", "Thought Leadership", "Tutorials"
+  ];
+
+  const featuredPost = {
+    title: "The AI Agent Revolution: Why 2025 is the Year of Workforce Transformation",
+    excerpt: "Discover how 722+ AI agents are reshaping business operations and why traditional automation is becoming obsolete. Our comprehensive analysis of 10,000+ deployments reveals the future of work.",
+    author: "Dr. Sarah Chen",
+    role: "Chief AI Strategist",
+    date: "2024-12-15",
+    readTime: "8 min read",
+    category: "Thought Leadership",
+    image: "/api/placeholder/800/400",
+    tags: ["AI Strategy", "Future of Work", "Digital Transformation"]
+  };
+
+  const blogPosts = [
+    {
+      title: "How TechCorp Saved $2.4M with Invoice Processing Automation",
+      excerpt: "A detailed case study showing how our Invoice Processor TITAN agent transformed their accounts payable department.",
+      author: "Marcus Rodriguez",
+      role: "Solutions Architect",
+      date: "2024-12-12",
+      readTime: "6 min read",
+      category: "Case Studies",
+      image: "/api/placeholder/400/250",
+      tags: ["Finance", "ROI", "Case Study"],
+      featured: false
+    },
+    {
+      title: "Building TITAN-Class Agents: The Science Behind Self-Evolving AI",
+      excerpt: "Explore the technical architecture that enables our agents to learn, adapt, and improve continuously without human intervention.",
+      author: "Dr. James Liu",
+      role: "Head of AI Research",
+      date: "2024-12-10",
+      readTime: "12 min read",
+      category: "AI Agents",
+      image: "/api/placeholder/400/250",
+      tags: ["AI Architecture", "Machine Learning", "Innovation"],
+      featured: true
+    },
+    {
+      title: "The Ultimate Guide to Customer Support Automation in 2025",
+      excerpt: "Learn how to deploy AI agents that handle 80% of customer inquiries while improving satisfaction scores.",
+      author: "Emma Thompson",
+      role: "Customer Success Director",
+      date: "2024-12-08",
+      readTime: "10 min read",
+      category: "Tutorials",
+      image: "/api/placeholder/400/250",
+      tags: ["Customer Support", "Implementation", "Best Practices"],
+      featured: false
+    },
+    {
+      title: "Security in the Age of AI Agents: A CISO's Perspective",
+      excerpt: "Understanding how to maintain enterprise security while deploying hundreds of AI agents across your organization.",
+      author: "Robert Kim",
+      role: "Chief Security Officer",
+      date: "2024-12-05",
+      readTime: "7 min read",
+      category: "Industry Insights",
+      image: "/api/placeholder/400/250",
+      tags: ["Security", "Compliance", "Enterprise"],
+      featured: false
+    },
+    {
+      title: "Breaking: Sentus.ai Announces Revolutionary Multi-Agent Orchestration",
+      excerpt: "New CONSTELLATION platform enables seamless coordination between hundreds of agents for complex enterprise workflows.",
+      author: "Alex Morgan",
+      role: "Product Manager",
+      date: "2024-12-03",
+      readTime: "5 min read",
+      category: "Product Updates",
+      image: "/api/placeholder/400/250",
+      tags: ["Product Launch", "Innovation", "Enterprise"],
+      featured: true
+    },
+    {
+      title: "From Manual to Magical: A CFO's Journey with Financial Automation",
+      excerpt: "How one Fortune 500 CFO transformed their finance department using AI agents and achieved 400% ROI in 90 days.",
+      author: "Lisa Chang",
+      role: "Enterprise Success Manager",
+      date: "2024-11-28",
+      readTime: "9 min read",
+      category: "Case Studies",
+      image: "/api/placeholder/400/250",
+      tags: ["Finance", "Leadership", "Transformation"],
+      featured: false
+    }
+  ];
+
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesCategory = selectedCategory === "all" || post.category.toLowerCase() === selectedCategory.toLowerCase();
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+    return matchesCategory && matchesSearch;
+  });
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="pt-24 pb-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto mb-16">
+            <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
+              AI Intelligence Hub
+            </Badge>
+            <h1 className="text-4xl md:text-6xl font-bold text-gradient-advanced mb-6">
+              The Future of Work Blog
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Insights, strategies, and breakthroughs from the frontlines of AI automation. 
+              Stay ahead of the curve with expert analysis and real-world case studies.
+            </p>
+          </div>
+
+          {/* Search and Filters */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="glass-card p-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                <Input
+                  placeholder="Search articles..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="bg-background/50 border-border/20"
+                />
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="bg-background/50 border-border/20">
+                    <SelectValue placeholder="All Categories" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map((category) => (
+                      <SelectItem key={category} value={category.toLowerCase()}>
+                        {category}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Article */}
+      <section className="pb-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-foreground mb-2">Featured Article</h2>
+            <p className="text-muted-foreground">Editor's pick for this week</p>
+          </div>
+          
+          <Card className="glass-hero hover-lift cursor-pointer mb-16">
+            <div className="grid lg:grid-cols-2 gap-8 p-8">
+              <div className="space-y-6">
+                <div>
+                  <Badge className="mb-4 bg-accent/10 text-accent">
+                    {featuredPost.category}
+                  </Badge>
+                  <h3 className="text-3xl font-bold text-foreground leading-tight mb-4">
+                    {featuredPost.title}
+                  </h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    {featuredPost.excerpt}
+                  </p>
+                </div>
+                
+                <div className="flex flex-wrap gap-2">
+                  {featuredPost.tags.map((tag, index) => (
+                    <Badge key={index} variant="secondary" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center">
+                      <User className="w-6 h-6 text-primary-foreground" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground">{featuredPost.author}</p>
+                      <p className="text-sm text-muted-foreground">{featuredPost.role}</p>
+                    </div>
+                  </div>
+                  <div className="text-right text-sm text-muted-foreground">
+                    <div className="flex items-center mb-1">
+                      <Calendar className="w-4 h-4 mr-1" />
+                      {new Date(featuredPost.date).toLocaleDateString()}
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="w-4 h-4 mr-1" />
+                      {featuredPost.readTime}
+                    </div>
+                  </div>
+                </div>
+
+                <Button className="btn-primary w-full sm:w-auto">
+                  Read Full Article
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </div>
+              
+              <div className="relative">
+                <div className="w-full h-80 lg:h-full rounded-2xl bg-gradient-primary opacity-20"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Bot className="w-24 h-24 text-primary animate-pulse" />
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Blog Posts Grid */}
+      <section className="pb-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-foreground mb-2">Latest Articles</h2>
+            <p className="text-muted-foreground">
+              {filteredPosts.length} articles found
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPosts.map((post, index) => (
+              <Card key={index} className="glass-card hover-lift cursor-pointer group">
+                <div className="relative">
+                  <div className="w-full h-48 rounded-t-lg bg-gradient-professional opacity-30"></div>
+                  <div className="absolute inset-0 flex items-center justify-center rounded-t-lg">
+                    {post.category === "AI Agents" && <Bot className="w-12 h-12 text-primary" />}
+                    {post.category === "Case Studies" && <TrendingUp className="w-12 h-12 text-success" />}
+                    {post.category === "Tutorials" && <BookOpen className="w-12 h-12 text-accent" />}
+                    {post.category === "Product Updates" && <Rocket className="w-12 h-12 text-secondary" />}
+                    {post.category === "Industry Insights" && <Globe className="w-12 h-12 text-primary" />}
+                  </div>
+                  {post.featured && (
+                    <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
+                      Featured
+                    </Badge>
+                  )}
+                </div>
+                
+                <CardHeader>
+                  <div className="mb-2">
+                    <Badge variant="secondary" className="text-xs">
+                      {post.category}
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                    {post.title}
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground leading-relaxed">
+                    {post.excerpt}
+                  </CardDescription>
+                </CardHeader>
+                
+                <CardContent>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {post.tags.map((tag, tagIndex) => (
+                      <Badge key={tagIndex} variant="outline" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center">
+                        <User className="w-4 h-4 text-primary-foreground" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-foreground">{post.author}</p>
+                        <p className="text-xs text-muted-foreground">{post.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                    <div className="flex items-center">
+                      <Calendar className="w-4 h-4 mr-1" />
+                      {new Date(post.date).toLocaleDateString()}
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="w-4 h-4 mr-1" />
+                      {post.readTime}
+                    </div>
+                  </div>
+                  
+                  <Button variant="outline" className="w-full btn-ghost group-hover:bg-primary/10">
+                    Read Article
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className="py-20 section-divider">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="glass-hero max-w-3xl mx-auto p-12">
+            <Brain className="w-16 h-16 text-primary mx-auto mb-6 animate-pulse" />
+            <h2 className="text-3xl md:text-4xl font-bold text-gradient-advanced mb-6">
+              Stay Ahead of the AI Revolution
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Get weekly insights on AI automation, exclusive case studies, and early access to new features.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <Input 
+                placeholder="Enter your email" 
+                className="bg-background/50 border-border/20 flex-1"
+              />
+              <Button className="btn-primary">
+                Subscribe
+              </Button>
+            </div>
+            <p className="text-sm text-muted-foreground mt-4">
+              Join 25,000+ AI leaders. Unsubscribe anytime.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Blog;

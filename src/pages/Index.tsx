@@ -7,10 +7,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
+import { Header } from "@/components/Header";
 import { 
   ArrowRight, Bot, Zap, Shield, Clock, Star, CheckCircle, TrendingUp, Users, Award, Sparkles,
   Cpu, Brain, Target, Rocket, Globe, Settings, Play, ChevronDown, ArrowDown, BarChart3,
-  DollarSign, Timer, Briefcase, MessageCircle, FileText, Database, Search, Lock
+  DollarSign, Timer, Briefcase, MessageCircle, FileText, Database, Search, Lock, 
+  Layers, Code, Workflow, BarChart
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import heroImage from "@/assets/hero-ai-command-center.jpg";
