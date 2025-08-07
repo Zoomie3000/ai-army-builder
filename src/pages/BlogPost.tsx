@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { SEO } from "@/components/SEO";
@@ -53,6 +53,26 @@ const BlogPost = () => {
   const getPostImage = (category: string) => categoryImageMap[category] || imgThoughtLeadership;
   const hero = post.heroImage || getPostImage(post.category);
 
+  const [progress, setProgress] = useState(0);
+  const articleRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = articleRef.current;
+      if (!el) return setProgress(0);
+      const top = el.offsetTop;
+      const total = el.scrollHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(window.scrollY - (top - 80), 0), Math.max(total, 0));
+      const pct = total > 0 ? (scrolled / total) * 100 : 0;
+      setProgress(Math.max(0, Math.min(100, pct)));
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true } as any);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
   const articleLd = {
     headline: post.title,
     description: post.description,
@@ -74,8 +94,21 @@ const BlogPost = () => {
     }
   };
 
-  // naive markdown to paragraphs (keep simple)
-  const paragraphs = post.content.split(/\n\n+/g);
+  // derive blocks, headings, and TOC from raw content
+  const paragraphs = useMemo(() => post.content.split(/\n\n+/g), [post.content]);
+  type Block = { type: 'heading' | 'p'; text: string; id?: string };
+  const blocks: Block[] = useMemo(() => {
+    return paragraphs.map((raw) => {
+      const t = raw.trim();
+      const isHeading = t.length > 0 && t.length <= 60 && /^[A-Za-z][A-Za-z0-9 \-&+’'()]+$/.test(t) && !t.includes(":") && !t.startsWith("-");
+      if (isHeading) {
+        const id = t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+        return { type: 'heading', text: t, id };
+      }
+      return { type: 'p', text: raw };
+    });
+  }, [paragraphs]);
+  const toc = useMemo(() => blocks.filter((b) => b.type === 'heading') as Array<Required<Block>>, [blocks]);
 
   const relatedPosts = useMemo(() => {
     return blogPosts
@@ -86,11 +119,14 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <div className="fixed top-0 left-0 right-0 z-40 h-1.5 bg-primary/10">
+        <div className="h-full bg-primary transition-[width] duration-150" style={{ width: `${progress}%` }} />
+      </div>
       <SEO title={`${post.title} | Sentus.ai Blog`} description={post.description} canonical={canonical} image={hero} type="article" />
       <StructuredData type="BlogPosting" data={articleLd} />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
-        <article className="max-w-3xl mx-auto">
+        <article ref={articleRef} className="max-w-3xl mx-auto">
           <div className="mb-6">
             <Badge variant="secondary" className="text-xs">{post.category}</Badge>
           </div>
@@ -126,9 +162,26 @@ const BlogPost = () => {
 
           <AuthorBio name={post.author} role={post.role} />
 
+          <nav aria-label="Table of contents" className="mb-10 p-4 rounded-lg bg-muted/30 border border-border/20">
+            <p className="text-sm font-medium mb-3">On this page</p>
+            <ul className="flex flex-wrap gap-3">
+              {toc.map((h) => (
+                <li key={h.id}>
+                  <a href={`#${h.id}`} className="text-sm text-muted-foreground hover:text-primary underline-offset-4 hover:underline">
+                    {h.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
           <div className="prose prose-invert max-w-none">
-            {paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
+            {blocks.map((b, i) => (
+              b.type === 'heading' ? (
+                <h2 key={b.id} id={b.id} className="text-2xl font-semibold text-foreground mt-10 mb-4 scroll-mt-24">{b.text}</h2>
+              ) : (
+                <p key={i}>{b.text}</p>
+              )
             ))}
           </div>
 

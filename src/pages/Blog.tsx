@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,6 +13,7 @@ import { blogPosts as allPosts, blogBaseUrl } from "@/data/blog-posts";
 import { Calendar, Clock, User, ArrowRight, TrendingUp, Bot, Zap,
   Brain, Target, Globe, Shield, Rocket, Users, BookOpen } from "lucide-react";
 import { BlogImage } from "@/components/BlogImage";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import illFlatAiAgents from "@/assets/illustrations/flat-ai-agents.webp";
 import illFlatAutomation from "@/assets/illustrations/flat-automation.webp";
 import illFlatCaseStudies from "@/assets/illustrations/flat-case-studies.webp";
@@ -242,78 +243,118 @@ const Blog = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post, index) => (
-              <Card key={index} className="glass-card hover-lift cursor-pointer group">
-                <div className="relative">
-                  <BlogImage
-                    src={getPostImage(post.category)}
-                    alt={`${post.category} article thumbnail for ${post.title}`}
-                    className="rounded-t-lg h-48"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  />
-                  {post.featured && (
-                    <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
-                      Featured
-                    </Badge>
-                  )}
-                </div>
-                
-                <CardHeader>
-                  <div className="mb-2">
-                    <Badge variant="secondary" className="text-xs">
-                      {post.category}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    {post.title}
-                  </CardTitle>
-                  <CardDescription className="text-muted-foreground leading-relaxed">
-                    {post.excerpt}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="outline" className="text-xs">
-                        {tag}
+            {(() => {
+              const pageSize = 9;
+              const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
+              const start = (page - 1) * pageSize;
+              const posts = filteredPosts.slice(start, start + pageSize);
+              return posts.map((post, index) => (
+                <Card key={index} className="glass-card hover-lift cursor-pointer group">
+                  <div className="relative">
+                    <BlogImage
+                      src={getPostImage(post.category)}
+                      alt={`${post.category} article thumbnail for ${post.title}`}
+                      className="rounded-t-lg h-48"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    />
+                    {post.featured && (
+                      <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
+                        Featured
                       </Badge>
-                    ))}
+                    )}
                   </div>
                   
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center">
-                        <User className="w-4 h-4 text-primary-foreground" />
+                  <CardHeader>
+                    <div className="mb-2">
+                      <Badge variant="secondary" className="text-xs">
+                        {post.category}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                      {post.title}
+                    </CardTitle>
+                    <CardDescription className="text-muted-foreground leading-relaxed">
+                      {post.excerpt}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags.map((tag, tagIndex) => (
+                        <Badge key={tagIndex} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center">
+                          <User className="w-4 h-4 text-primary-foreground" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-foreground">{post.author}</p>
+                          <p className="text-xs text-muted-foreground">{post.role}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-sm font-medium text-foreground">{post.author}</p>
-                        <p className="text-xs text-muted-foreground">{post.role}</p>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        {new Date(post.date).toLocaleDateString()}
+                      </div>
+                      <div className="flex items-center">
+                        <Clock className="w-4 h-4 mr-1" />
+                        {post.readTime}
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      {new Date(post.date).toLocaleDateString()}
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="w-4 h-4 mr-1" />
-                      {post.readTime}
-                    </div>
-                  </div>
-                  
-                  <Link to={`/blog/${post.slug}`}>
-                    <Button variant="outline" className="w-full btn-ghost group-hover:bg-primary/10">
-                      Read Article
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                    
+                    <Link to={`/blog/${post.slug}`}>
+                      <Button variant="outline" className="w-full btn-ghost group-hover:bg-primary/10">
+                        Read Article
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ));
+            })()}
           </div>
+
+          {/* Pagination */}
+          {(() => {
+            const pageSize = 9;
+            const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
+            const totalPages = Math.max(1, Math.ceil(filteredPosts.length / pageSize));
+            const goTo = (p: number) => {
+              const sp = new URLSearchParams(searchParams);
+              if (p <= 1) sp.delete('page'); else sp.set('page', String(p));
+              setSearchParams(sp);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            if (totalPages <= 1) return null;
+            const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+            return (
+              <Pagination className="mt-10">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); if (page > 1) goTo(page - 1); }} />
+                  </PaginationItem>
+                  {pages.map((p) => (
+                    <PaginationItem key={p}>
+                      <PaginationLink href="#" isActive={p === page} onClick={(e) => { e.preventDefault(); goTo(p); }}>
+                        {p}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationNext href="#" onClick={(e) => { e.preventDefault(); if (page < totalPages) goTo(page + 1); }} />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            );
+          })()}
         </div>
       </section>
 
