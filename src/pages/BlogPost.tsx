@@ -15,6 +15,7 @@ import imgIndustryInsights from "@/assets/blog-industry-insights.jpg";
 import imgProductUpdates from "@/assets/blog-product-updates.jpg";
 import imgTutorials from "@/assets/blog-tutorials.jpg";
 import imgThoughtLeadership from "@/assets/blog-thought-leadership.jpg";
+import { BlogImage } from "@/components/BlogImage";
 
 const origin = typeof window !== "undefined" ? window.location.origin : "https://sentus.ai";
 
@@ -97,11 +98,11 @@ const BlogPost = () => {
           <p className="text-lg text-muted-foreground mb-6">{post.excerpt}</p>
 
           <figure className="mb-10">
-            <img
+            <BlogImage
               src={hero}
               alt={`${post.category} hero image for ${post.title}`}
-              className="w-full h-auto rounded-2xl"
-              loading="lazy"
+              className="rounded-2xl"
+              sizes="(min-width: 1024px) 768px, 100vw"
             />
             <figcaption className="sr-only">Illustrative image for the article {post.title}</figcaption>
           </figure>
@@ -161,11 +162,11 @@ const BlogPost = () => {
               {relatedPosts.map((rp) => (
                 <Link key={rp.slug} to={`/blog/${rp.slug}`} className="group">
                   <div className="rounded-xl overflow-hidden glass-card">
-                    <img
+                    <BlogImage
                       src={getPostImage(rp.category)}
                       alt={`${rp.category} related article thumbnail for ${rp.title}`}
-                      className="w-full h-32 object-cover"
-                      loading="lazy"
+                      className="h-32"
+                      sizes="(min-width: 1024px) 256px, 100vw"
                     />
                     <div className="p-4">
                       <Badge variant="secondary" className="text-[10px] mb-2">{rp.category}</Badge>

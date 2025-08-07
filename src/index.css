@@ -383,6 +383,29 @@
     transform: skewY(-1deg);
     z-index: -1;
   }
+
+  /* Soft image system for blog visuals */
+  .image-shell {
+    position: relative;
+    border-radius: 1.5rem; /* rounded-3xl */
+    overflow: hidden;
+    background: var(--gradient-professional);
+    box-shadow: var(--shadow-professional);
+  }
+
+  .image-overlay-duotone {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--secondary) / 0.08));
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  .image-soft-mask img {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.3) 10%, black 25%, black 75%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0.02) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.3) 10%, black 25%, black 75%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0.02) 100%);
+  }
 }
 
 /* Advanced Keyframes */

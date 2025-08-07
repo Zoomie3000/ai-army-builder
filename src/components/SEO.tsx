@@ -48,6 +48,10 @@ export const SEO = ({ title, description, canonical, image, type = "article" }: 
     upsertMeta('meta', 'property', 'og:type', type);
     upsertMeta('meta', 'name', 'twitter:card', image ? 'summary_large_image' : 'summary');
 
+    upsertMeta('meta', 'property', 'og:site_name', 'Sentus.ai');
+    upsertMeta('meta', 'name', 'robots', 'index, follow');
+    upsertMeta('meta', 'name', 'theme-color', '#0ea5b7');
+
     if (image) {
       upsertMeta('meta', 'property', 'og:image', image);
       upsertMeta('meta', 'name', 'twitter:image', image);

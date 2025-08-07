@@ -11,6 +11,7 @@ import { StructuredData } from "@/components/StructuredData";
 import { blogPosts as allPosts, blogBaseUrl } from "@/data/blog-posts";
 import { Calendar, Clock, User, ArrowRight, TrendingUp, Bot, Zap,
   Brain, Target, Globe, Shield, Rocket, Users, BookOpen } from "lucide-react";
+import { BlogImage } from "@/components/BlogImage";
 import imgAgents from "@/assets/blog-ai-agents.jpg";
 import imgAutomation from "@/assets/blog-automation.jpg";
 import imgCaseStudies from "@/assets/blog-case-studies.jpg";
@@ -159,11 +160,11 @@ const Blog = () => {
               </div>
               
               <div className="relative">
-                <img
+                <BlogImage
                   src={getPostImage(featuredPost.category)}
                   alt={`${featuredPost.category} article hero image for ${featuredPost.title}`}
-                  className="w-full h-80 lg:h-full object-cover rounded-2xl"
-                  loading="lazy"
+                  className="rounded-2xl h-80 lg:h-full"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                 />
               </div>
             </div>
@@ -185,11 +186,11 @@ const Blog = () => {
             {filteredPosts.map((post, index) => (
               <Card key={index} className="glass-card hover-lift cursor-pointer group">
                 <div className="relative">
-                  <img
+                  <BlogImage
                     src={getPostImage(post.category)}
                     alt={`${post.category} article thumbnail for ${post.title}`}
-                    className="w-full h-48 object-cover rounded-t-lg"
-                    loading="lazy"
+                    className="rounded-t-lg h-48"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   />
                   {post.featured && (
                     <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
