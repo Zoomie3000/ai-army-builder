@@ -13,9 +13,9 @@ export const Header = () => {
   const location = useLocation();
 
   const navigation = [
-    { name: "Platform", href: "/", icon: Rocket },
-    { name: "Agents", href: "/agents", icon: Bot },
     { name: "Solutions", href: "/solutions", icon: Building2 },
+    { name: "Agent Catalog", href: "/agents", icon: Bot },
+    { name: "Technology", href: "/technology", icon: Rocket },
     { name: "Education", href: "/education", icon: BookOpen },
     { name: "Blog", href: "/blog", icon: MessageSquare },
     { name: "Company", href: "/company", icon: Users },

@@ -15,6 +15,7 @@ import {
   Layers, Code, Workflow, BarChart
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { InteractiveROICalculator } from "@/components/InteractiveROICalculator";
 import heroImage from "@/assets/hero-ai-command-center.jpg";
 import agentsImage from "@/assets/ai-agents-working.jpg";
 import roiImage from "@/assets/roi-dashboard.jpg";
@@ -224,19 +225,19 @@ const Index = () => {
                   🚀 722+ Elite AI Agents • Zero Resistance Deployment
                 </Badge>
                 
-                <h1 className="text-6xl lg:text-8xl font-bold leading-tight">
-                  <span className="text-gradient-advanced">Unleash Your</span>
+                <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+                  <span className="text-gradient-advanced">Reclaim 20 Hours</span>
                   <br />
-                  <span className="text-glow-advanced">AI Army</span>
+                  <span className="text-glow-advanced">a Week</span>
                 </h1>
                 
                 <div className="space-y-4 text-xl lg:text-2xl text-muted-foreground max-w-2xl">
                   <p className="leading-relaxed">
-                    Deploy <span className="text-accent font-bold">722+ specialized AI agents</span> in 5 minutes. 
-                    Automate 40-90% of repetitive tasks without coding.
+                    Deploy an <span className="text-accent font-bold">AI workforce of 722+ agents</span> in 5 minutes. 
+                    Automate 70% of repetitive tasks without writing a single line of code.
                   </p>
-                  <p className="text-primary font-semibold text-2xl">
-                    Save $5,000+ monthly. Guaranteed ROI in 30 days.
+                  <p className="text-primary font-semibold text-xl">
+                    Average savings: <span className="text-accent">$27,600/month</span> • ROI guaranteed in 30 days
                   </p>
                 </div>
               </div>
@@ -252,7 +253,7 @@ const Index = () => {
                     />
                   </div>
                   <Button onClick={handleFreeTrial} size="lg" className="btn-primary text-lg px-8 h-14 min-w-[200px]">
-                    Deploy AI Army <ArrowRight className="ml-2 h-5 w-5" />
+                    Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
 
