@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Users, Zap, ArrowLeft } from "lucide-react";
+import { InteractiveROICalculator } from "@/components/InteractiveROICalculator";
 
 const formatCurrency = (amount: number) =>
   new Intl.NumberFormat("en-US", {
@@ -163,6 +164,25 @@ const AgentDetail = () => {
               </CardContent>
             </Card>
           </section>
+
+          <Card className="glass-card">
+            <CardHeader>
+              <CardTitle>Why this agent is special</CardTitle>
+              <CardDescription>What sets it apart</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-start"><Zap className="w-4 h-4 text-accent mr-2 mt-0.5" /><span>Saves {formatCurrency(agent.estimatedSavingsPerMonth)} per month on average</span></li>
+                <li className="flex items-start"><Users className="w-4 h-4 mr-2 mt-0.5" /><span>Trusted by {agent.deployments.toLocaleString()} companies</span></li>
+                <li className="flex items-start"><Zap className="w-4 h-4 text-accent mr-2 mt-0.5" /><span>Deploys in {agent.deployTime} with guided setup</span></li>
+                <li className="flex items-start"><Zap className="w-4 h-4 text-accent mr-2 mt-0.5" /><span>Standout features: {agent.features.slice(0,2).join(", ")}</span></li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <div className="pt-4">
+            <InteractiveROICalculator />
+          </div>
         </div>
       </main>
     </div>
