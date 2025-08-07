@@ -10,7 +10,7 @@ import { Header } from "@/components/Header";
 import {
   Bot, Search, Filter, Star, Clock, DollarSign, Users, Zap,
   FileText, Calculator, MessageCircle, Database, Briefcase, Settings,
-  ShoppingCart, TrendingUp, Shield, Globe, Cpu, Brain
+  ShoppingCart, TrendingUp, Shield, Globe, Cpu, Brain, Home, Truck
 } from "lucide-react";
 import { SEO } from "@/components/SEO";
 import { StructuredData } from "@/components/StructuredData";
@@ -22,10 +22,18 @@ const Agents = () => {
   const [selectedIndustry, setSelectedIndustry] = useState("all");
 
   const CATEGORY_META: Record<string, { icon: any; color: string }> = {
-    "Finance & Accounting": { icon: Calculator, color: "bg-green-500/10 text-green-400" },
-    "Customer Support": { icon: MessageCircle, color: "bg-blue-500/10 text-blue-400" },
-    "Sales & Marketing": { icon: TrendingUp, color: "bg-purple-500/10 text-purple-400" },
-    "Operations": { icon: Settings, color: "bg-orange-500/10 text-orange-400" },
+    "Finance & Accounting": { icon: Calculator, color: "bg-success/10 text-success" },
+    "Customer Support": { icon: MessageCircle, color: "bg-primary/10 text-primary" },
+    "Customer Success": { icon: MessageCircle, color: "bg-primary/10 text-primary" },
+    "Sales & Marketing": { icon: TrendingUp, color: "bg-accent/10 text-accent" },
+    "Operations": { icon: Settings, color: "bg-warning/10 text-warning" },
+    "Legal": { icon: FileText, color: "bg-accent/10 text-accent" },
+    "Healthcare": { icon: Briefcase, color: "bg-accent/10 text-accent" },
+    "Real Estate": { icon: Briefcase, color: "bg-accent/10 text-accent" },
+    "Technology": { icon: Cpu, color: "bg-accent/10 text-accent" },
+    "HR": { icon: Users, color: "bg-accent/10 text-accent" },
+    "Security & Compliance": { icon: Shield, color: "bg-accent/10 text-accent" },
+    "Supply Chain": { icon: ShoppingCart, color: "bg-accent/10 text-accent" },
   };
 
   const grouped = agents.reduce((acc, agent) => {
@@ -42,8 +50,13 @@ const Agents = () => {
   }, {} as Record<string, { icon: any; color: string; agents: Agent[] }>);
 
   const industries = [
-    "All Industries", "Healthcare", "Finance", "Technology", "Manufacturing",
-    "Retail", "Legal", "Real Estate", "Education", "Non-profit"
+    "All Industries", "healthcare", "finance", "legal", "technology", "manufacturing",
+    "retail", "ecommerce", "real estate", "education", "hospitality", "logistics",
+    "construction", "energy", "utilities", "government", "nonprofit", "media",
+    "telecommunications", "agriculture", "transportation", "insurance", "pharmaceuticals",
+    "biotechnology", "aerospace", "automotive", "gaming", "sports", "entertainment",
+    "consumer goods", "food-and-beverage", "travel", "professional-services", "consulting",
+    "mining", "chemicals"
   ];
 
   const filteredAgents = Object.entries(grouped).reduce((acc, [category, data]) => {
@@ -81,15 +94,27 @@ const Agents = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <SEO
-        title="AI Agent Arsenal | Sentus.ai"
-        description="Browse and deploy specialized AI agents across Finance, Support, Sales & Marketing, and Operations. Deploy in minutes with real ROI."
+        title={`AI Agents Catalog | Sentus.ai (${totalAgents} agents)`}
+        description="Browse and deploy specialized AI agents across finance, legal, healthcare, operations, and more. Deploy in minutes with measurable ROI."
         canonical={typeof window !== 'undefined' ? `${window.location.origin}/agents` : undefined}
       />
       <StructuredData
         type="CollectionPage"
         data={{
-          name: "AI Agent Arsenal",
-          description: "Catalog of deployable AI agents across business functions",
+          name: "AI Agents Catalog",
+          description: "Catalog of deployable AI agents across industries and departments",
+          numberOfItems: totalAgents,
+        }}
+      />
+      <StructuredData
+        type="ItemList"
+        data={{
+          itemListElement: agents.map((a, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            url: typeof window !== 'undefined' ? `${window.location.origin}/agents/${a.slug}` : `https://sentus.ai/agents/${a.slug}`,
+            name: a.name,
+          })),
           numberOfItems: totalAgents,
         }}
       />
@@ -99,14 +124,13 @@ const Agents = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto mb-16">
             <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
-              {totalAgents} AI Agents Available
+              {totalAgents} AI agents available
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-gradient-advanced mb-6">
-              Your AI Agent Arsenal
+              AI agents for every industry and department
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Deploy specialized AI agents in minutes. Each agent is battle-tested, 
-              continuously learning, and designed to amplify human intelligence across every business function.
+              Deploy specialized AI agents in minutes. Proven across finance, legal, healthcare, operations, and many more industries.
             </p>
           </div>
 

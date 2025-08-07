@@ -1,0 +1,68 @@
+import { Agent } from "@/types/agent";
+
+export const salesMarketingAgents: Agent[] = [
+  {
+    slug: "lead-qualifier",
+    name: "lead qualifier",
+    category: "Sales & Marketing",
+    industries: ["technology", "saas", "services"],
+    description:
+      "scores and qualifies leads using 50+ data points, intent signals, and crm integrations",
+    features: ["behavioral scoring", "intent detection", "crm integration", "predictive analytics"],
+    tags: ["lead gen"],
+    deployTime: "3 minutes",
+    rating: 4.9,
+    deployments: 2678,
+    estimatedSavingsPerMonth: 52100,
+    tasksPerDay: 18000,
+    pricePerMonth: 497,
+  },
+  {
+    slug: "campaign-optimizer",
+    name: "campaign optimizer",
+    category: "Sales & Marketing",
+    industries: ["technology", "retail", "ecommerce"],
+    description:
+      "optimizes ad campaigns across platforms with automated a/b tests and budget allocation",
+    features: ["multi-platform", "a/b testing", "budget allocation", "performance tracking"],
+    tags: ["optimization"],
+    deployTime: "4 minutes",
+    rating: 4.8,
+    deployments: 1789,
+    estimatedSavingsPerMonth: 28400,
+    tasksPerDay: 14000,
+    pricePerMonth: 597,
+  },
+  {
+    slug: "content-repurposer",
+    name: "content repurposer",
+    category: "Sales & Marketing",
+    industries: ["technology", "media", "services"],
+    description:
+      "turns webinars and long-form content into social clips, blogs, and emails across channels",
+    features: ["transcription", "summaries", "clip generation", "posting"],
+    tags: ["content"],
+    deployTime: "3 minutes",
+    rating: 4.7,
+    deployments: 812,
+    estimatedSavingsPerMonth: 7600,
+    tasksPerDay: 7200,
+    pricePerMonth: 399,
+  },
+  {
+    slug: "seo-auditor",
+    name: "seo auditor",
+    category: "Sales & Marketing",
+    industries: ["ecommerce", "technology", "media"],
+    description:
+      "site crawl, technical fixes, and content gap analysis to lift organic growth",
+    features: ["crawl", "technical fixes", "content gaps", "recommendations"],
+    tags: ["seo"],
+    deployTime: "4 minutes",
+    rating: 4.7,
+    deployments: 564,
+    estimatedSavingsPerMonth: 6800,
+    tasksPerDay: 5200,
+    pricePerMonth: 399,
+  },
+];

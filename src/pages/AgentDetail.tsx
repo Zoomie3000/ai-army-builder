@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Star, Users, Zap, ArrowLeft } from "lucide-react";
 import { InteractiveROICalculator } from "@/components/InteractiveROICalculator";
+import AgentFAQ from "@/components/AgentFAQ";
 
 const formatCurrency = (amount: number) =>
   new Intl.NumberFormat("en-US", {
@@ -44,7 +45,7 @@ const AgentDetail = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <SEO
-        title={`${agent.name} | AI Agent | Sentus.ai`}
+        title={`${agent.name} | ai agent | sentus.ai`}
         description={agent.description}
         canonical={canonical}
       />
@@ -179,6 +180,19 @@ const AgentDetail = () => {
               </ul>
             </CardContent>
           </Card>
+
+          <AgentFAQ agent={agent} />
+
+          <StructuredData
+            type="FAQPage"
+            data={{
+              mainEntity: (agent.faq && agent.faq.length > 0 ? agent.faq : []).map(f => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            }}
+          />
 
           <div className="pt-4">
             <InteractiveROICalculator />
