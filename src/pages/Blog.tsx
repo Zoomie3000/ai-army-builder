@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Header } from "@/components/Header";
-import {
-  Calendar, Clock, User, ArrowRight, TrendingUp, Bot, Zap,
-  Brain, Target, Globe, Shield, Rocket, Users, BookOpen
-} from "lucide-react";
+import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
+import { blogPosts as allPosts, blogBaseUrl } from "@/data/blog-posts";
+import { Calendar, Clock, User, ArrowRight, TrendingUp, Bot, Zap,
+  Brain, Target, Globe, Shield, Rocket, Users, BookOpen } from "lucide-react";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -18,94 +20,9 @@ const Blog = () => {
     "All", "AI Agents", "Automation", "Case Studies", "Industry Insights", 
     "Product Updates", "Thought Leadership", "Tutorials"
   ];
+  const blogPosts = useMemo(() => allPosts, []);
 
-  const featuredPost = {
-    title: "The AI Agent Revolution: Why 2025 is the Year of Workforce Transformation",
-    excerpt: "Discover how 722+ AI agents are reshaping business operations and why traditional automation is becoming obsolete. Our comprehensive analysis of 10,000+ deployments reveals the future of work.",
-    author: "Dr. Sarah Chen",
-    role: "Chief AI Strategist",
-    date: "2024-12-15",
-    readTime: "8 min read",
-    category: "Thought Leadership",
-    image: "/api/placeholder/800/400",
-    tags: ["AI Strategy", "Future of Work", "Digital Transformation"]
-  };
-
-  const blogPosts = [
-    {
-      title: "How TechCorp Saved $2.4M with Invoice Processing Automation",
-      excerpt: "A detailed case study showing how our Invoice Processor TITAN agent transformed their accounts payable department.",
-      author: "Marcus Rodriguez",
-      role: "Solutions Architect",
-      date: "2024-12-12",
-      readTime: "6 min read",
-      category: "Case Studies",
-      image: "/api/placeholder/400/250",
-      tags: ["Finance", "ROI", "Case Study"],
-      featured: false
-    },
-    {
-      title: "Building TITAN-Class Agents: The Science Behind Self-Evolving AI",
-      excerpt: "Explore the technical architecture that enables our agents to learn, adapt, and improve continuously without human intervention.",
-      author: "Dr. James Liu",
-      role: "Head of AI Research",
-      date: "2024-12-10",
-      readTime: "12 min read",
-      category: "AI Agents",
-      image: "/api/placeholder/400/250",
-      tags: ["AI Architecture", "Machine Learning", "Innovation"],
-      featured: true
-    },
-    {
-      title: "The Ultimate Guide to Customer Support Automation in 2025",
-      excerpt: "Learn how to deploy AI agents that handle 80% of customer inquiries while improving satisfaction scores.",
-      author: "Emma Thompson",
-      role: "Customer Success Director",
-      date: "2024-12-08",
-      readTime: "10 min read",
-      category: "Tutorials",
-      image: "/api/placeholder/400/250",
-      tags: ["Customer Support", "Implementation", "Best Practices"],
-      featured: false
-    },
-    {
-      title: "Security in the Age of AI Agents: A CISO's Perspective",
-      excerpt: "Understanding how to maintain enterprise security while deploying hundreds of AI agents across your organization.",
-      author: "Robert Kim",
-      role: "Chief Security Officer",
-      date: "2024-12-05",
-      readTime: "7 min read",
-      category: "Industry Insights",
-      image: "/api/placeholder/400/250",
-      tags: ["Security", "Compliance", "Enterprise"],
-      featured: false
-    },
-    {
-      title: "Breaking: Sentus.ai Announces Revolutionary Multi-Agent Orchestration",
-      excerpt: "New CONSTELLATION platform enables seamless coordination between hundreds of agents for complex enterprise workflows.",
-      author: "Alex Morgan",
-      role: "Product Manager",
-      date: "2024-12-03",
-      readTime: "5 min read",
-      category: "Product Updates",
-      image: "/api/placeholder/400/250",
-      tags: ["Product Launch", "Innovation", "Enterprise"],
-      featured: true
-    },
-    {
-      title: "From Manual to Magical: A CFO's Journey with Financial Automation",
-      excerpt: "How one Fortune 500 CFO transformed their finance department using AI agents and achieved 400% ROI in 90 days.",
-      author: "Lisa Chang",
-      role: "Enterprise Success Manager",
-      date: "2024-11-28",
-      readTime: "9 min read",
-      category: "Case Studies",
-      image: "/api/placeholder/400/250",
-      tags: ["Finance", "Leadership", "Transformation"],
-      featured: false
-    }
-  ];
-
+  const featuredPost = useMemo(() => blogPosts.find(p => p.featured) ?? blogPosts[0], [blogPosts]);
   const filteredPosts = blogPosts.filter(post => {
     const matchesCategory = selectedCategory === "all" || post.category.toLowerCase() === selectedCategory.toLowerCase();
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -117,8 +34,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
-      {/* Hero Section */}
+      <SEO title="AI Agents Blog | Guides, Case Studies, 2025" description="Expert guides, tutorials, and case studies on AI agents, automation, and multi‑agent orchestration for enterprises and SMBs." canonical={`${blogBaseUrl}`} />
       <section className="pt-24 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto mb-16">
@@ -126,7 +42,7 @@ const Blog = () => {
               AI Intelligence Hub
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-gradient-advanced mb-6">
-              The Future of Work Blog
+              AI Agents Blog
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Insights, strategies, and breakthroughs from the frontlines of AI automation. 
@@ -160,6 +76,7 @@ const Blog = () => {
             </div>
           </div>
         </div>
+        <StructuredData type="ItemList" data={{ itemListElement: filteredPosts.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: `${blogBaseUrl}/${p.slug}`, name: p.title })) }} />
       </section>
 
       {/* Featured Article */}
@@ -215,10 +132,12 @@ const Blog = () => {
                   </div>
                 </div>
 
-                <Button className="btn-primary w-full sm:w-auto">
-                  Read Full Article
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                <Link to={`/blog/${featuredPost.slug}`}>
+                  <Button className="btn-primary w-full sm:w-auto">
+                    Read Full Article
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
               </div>
               
               <div className="relative">
@@ -307,10 +226,12 @@ const Blog = () => {
                     </div>
                   </div>
                   
-                  <Button variant="outline" className="w-full btn-ghost group-hover:bg-primary/10">
-                    Read Article
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                  <Link to={`/blog/${post.slug}`}>
+                    <Button variant="outline" className="w-full btn-ghost group-hover:bg-primary/10">
+                      Read Article
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}

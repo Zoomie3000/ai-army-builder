@@ -18,6 +18,8 @@ import Terms from "./pages/Terms";
 import Press from "./pages/Press";
 import Partners from "./pages/Partners";
 import FAQ from "./pages/FAQ";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -31,6 +33,8 @@ const App = () => (
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/agents/:slug" element={<AgentDetail />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
