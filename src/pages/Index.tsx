@@ -21,6 +21,7 @@ import heroImage from "@/assets/hero-ai-command-center.jpg";
 import agentsImage from "@/assets/ai-agents-working.jpg";
 import roiImage from "@/assets/roi-dashboard.jpg";
 import { StructuredData } from "@/components/StructuredData";
+import { AgentFinderWizard } from "@/components/AgentFinderWizard";
 
 const Index = () => {
   const { toast } = useToast();
@@ -256,6 +257,19 @@ const Index = () => {
                   <Button onClick={handleFreeTrial} size="lg" className="btn-primary text-lg px-8 h-14 min-w-[200px]">
                     Start Your 14-Day Free Trial <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
+                </div>
+                <div className="mt-4">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button asChild variant="outline" className="btn-ghost h-12">
+                      <a href="#industries">Explore Industries</a>
+                    </Button>
+                    <div>
+                      {/* Agent Finder Wizard Trigger */}
+                      <div id="agent-finder-trigger">
+                        {/* component inserted below in file */}
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-6 mt-6 text-sm text-muted-foreground">

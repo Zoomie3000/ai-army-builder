@@ -24,6 +24,13 @@ import Services from "./pages/Services";
 import Consulting from "./pages/services/Consulting";
 import CustomAgents from "./pages/services/CustomAgents";
 import Integrations from "./pages/services/Integrations";
+import Industries from "./pages/Industries";
+import HealthcareIndustry from "./pages/industries/Healthcare";
+import FinanceIndustry from "./pages/industries/Finance";
+import RetailIndustry from "./pages/industries/Retail";
+import ManufacturingIndustry from "./pages/industries/Manufacturing";
+import RealEstateIndustry from "./pages/industries/RealEstate";
+import Education from "./pages/Education";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -39,6 +46,13 @@ const App = () => (
           <Route path="/services/consulting" element={<Consulting />} />
           <Route path="/services/custom-agents" element={<CustomAgents />} />
           <Route path="/services/integrations" element={<Integrations />} />
+          <Route path="/industries" element={<Industries />} />
+          <Route path="/industries/healthcare" element={<HealthcareIndustry />} />
+          <Route path="/industries/finance" element={<FinanceIndustry />} />
+          <Route path="/industries/retail" element={<RetailIndustry />} />
+          <Route path="/industries/manufacturing" element={<ManufacturingIndustry />} />
+          <Route path="/industries/real-estate" element={<RealEstateIndustry />} />
+          <Route path="/education" element={<Education />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/agents/:slug" element={<AgentDetail />} />
           <Route path="/blog" element={<Blog />} />
