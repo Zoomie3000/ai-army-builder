@@ -31,6 +31,10 @@ import RetailIndustry from "./pages/industries/Retail";
 import ManufacturingIndustry from "./pages/industries/Manufacturing";
 import RealEstateIndustry from "./pages/industries/RealEstate";
 import Education from "./pages/Education";
+import InsuranceIndustry from "./pages/industries/Insurance";
+import LogisticsIndustry from "./pages/industries/Logistics";
+import ProfessionalServicesIndustry from "./pages/industries/ProfessionalServices";
+import Trust from "./pages/Trust";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -52,6 +56,9 @@ const App = () => (
           <Route path="/industries/retail" element={<RetailIndustry />} />
           <Route path="/industries/manufacturing" element={<ManufacturingIndustry />} />
           <Route path="/industries/real-estate" element={<RealEstateIndustry />} />
+          <Route path="/industries/insurance" element={<InsuranceIndustry />} />
+          <Route path="/industries/logistics" element={<LogisticsIndustry />} />
+          <Route path="/industries/professional-services" element={<ProfessionalServicesIndustry />} />
           <Route path="/education" element={<Education />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/agents/:slug" element={<AgentDetail />} />
@@ -65,6 +72,7 @@ const App = () => (
           <Route path="/terms" element={<Terms />} />
           <Route path="/press" element={<Press />} />
           <Route path="/partners" element={<Partners />} />
+          <Route path="/trust" element={<Trust />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

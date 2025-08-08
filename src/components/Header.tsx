@@ -36,6 +36,9 @@ export const Header = () => {
       { name: "Retail", href: "/industries/retail" },
       { name: "Manufacturing", href: "/industries/manufacturing" },
       { name: "Real Estate", href: "/industries/real-estate" },
+      { name: "Insurance", href: "/industries/insurance" },
+      { name: "Logistics", href: "/industries/logistics" },
+      { name: "Professional Services", href: "/industries/professional-services" },
     ],
     resources: [
       { name: "Blog", href: "/blog" },
@@ -43,6 +46,7 @@ export const Header = () => {
     ],
     company: [
       { name: "About Us", href: "/about" },
+      { name: "Trust Center", href: "/trust" },
       { name: "Press", href: "/press" },
       { name: "Partners", href: "/partners" },
     ],
@@ -215,8 +219,8 @@ export const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" size="sm" className="text-muted-foreground">
-              Sign In
+            <Button asChild variant="ghost" size="sm" className="text-muted-foreground">
+              <a href="/trust">Trust</a>
             </Button>
             <Button size="sm" className="btn-primary">
               Start Free Trial
@@ -312,8 +316,8 @@ export const Header = () => {
 
                   <div className="pt-2 border-t border-border/20">
                     <div className="space-y-3">
-                      <Button variant="ghost" className="w-full justify-start">
-                        Sign In
+                      <Button asChild variant="ghost" className="w-full justify-start">
+                        <a href="/trust">Trust Center</a>
                       </Button>
                       <Button className="w-full btn-primary">
                         Start Free Trial
