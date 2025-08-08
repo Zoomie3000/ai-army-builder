@@ -225,7 +225,7 @@ const Index = () => {
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center section-padding">
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
+            <div className="space-y-8 text-center lg:text-left">
               <div className="space-y-6 animate-fade-in-up">
                 <Badge className="bg-primary/20 text-primary border-primary/30 animate-pulse-soft px-4 py-2 text-sm font-semibold">
                   🚀 Deploy AI that pays for itself in weeks
@@ -248,7 +248,7 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="glass-panel p-6 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              <div className="glass-panel p-6 mx-auto max-w-2xl animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1">
                     <Input 
@@ -316,7 +316,7 @@ const Index = () => {
             </div>
 
             <div className="relative animate-fade-in-right">
-              <div className="glass-hero p-8 hover-lift">
+              <div className="glass-hero p-8 hover-lift mx-auto max-w-md">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   <div className="glass-panel p-4 rounded-xl text-center">
                     <div className="text-sm text-muted-foreground">Avg Savings</div>
@@ -412,10 +412,10 @@ const Index = () => {
 
           <div className="glass-card p-8">
             <Tabs value={activeDemo} onValueChange={setActiveDemo} className="w-full">
-              <TabsList className="grid w-full grid-cols-3 glass-panel">
-                <TabsTrigger value="invoice" className="text-lg">Invoice Processing</TabsTrigger>
-                <TabsTrigger value="support" className="text-lg">Customer Support</TabsTrigger>
-                <TabsTrigger value="data" className="text-lg">Data Analytics</TabsTrigger>
+              <TabsList className="flex w-full glass-panel overflow-x-auto no-scrollbar">
+                <TabsTrigger value="invoice" className="text-lg min-w-[12rem] flex-1 whitespace-nowrap">Invoice Processing</TabsTrigger>
+                <TabsTrigger value="support" className="text-lg min-w-[12rem] flex-1 whitespace-nowrap">Customer Support</TabsTrigger>
+                <TabsTrigger value="data" className="text-lg min-w-[12rem] flex-1 whitespace-nowrap">Data Analytics</TabsTrigger>
               </TabsList>
               
               {Object.entries(demoScenarios).map(([key, demo]) => (
@@ -638,9 +638,9 @@ const Index = () => {
           </div>
 
           <Tabs defaultValue="Financial Operations" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 glass-panel mb-12">
+            <TabsList className="flex w-full glass-panel mb-12 overflow-x-auto no-scrollbar">
               {Object.keys(agentCategories).map((category) => (
-                <TabsTrigger key={category} value={category} className="text-lg py-3">
+                <TabsTrigger key={category} value={category} className="text-lg py-3 min-w-[12rem] flex-1 whitespace-nowrap">
                   {category}
                 </TabsTrigger>
               ))}
@@ -697,9 +697,9 @@ const Index = () => {
                 <p className="text-xl text-muted-foreground">
                   From basic automation to advanced AI reasoning, we have agents for every business function
                 </p>
-                <Button size="lg" className="btn-primary text-xl px-12 py-6">
-                  Explore Full Agent Catalog <ArrowRight className="ml-2 h-6 w-6" />
-                </Button>
+                  <Button size="lg" className="btn-primary text-xl px-12 py-6 mx-auto">
+                    Explore Full Agent Catalog <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
               </div>
             </div>
           </div>
@@ -782,7 +782,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA - Revolutionary */}
-      <section className="flowing-section section-padding">
+      <section className="flowing-section section-padding overflow-visible">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-5xl mx-auto space-y-12">
             <div className="space-y-8">

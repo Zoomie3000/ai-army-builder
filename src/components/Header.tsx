@@ -76,10 +76,10 @@ export const Header = () => {
                 <Sparkles className="w-4 h-4 text-accent animate-pulse" />
               </div>
             </div>
-            <div className="hidden sm:block">
-              <span className="text-xl font-bold text-gradient-advanced">Sentus</span>
-              <span className="text-xl font-bold text-foreground">.ai</span>
-              <Badge variant="secondary" className="ml-2 text-xs">TITAN</Badge>
+            <div className="block">
+              <span className="text-lg sm:text-xl font-bold text-gradient-advanced">Sentus</span>
+              <span className="text-lg sm:text-xl font-bold text-foreground">.ai</span>
+              <Badge variant="secondary" className="ml-2 text-[10px] hidden sm:inline-flex">TITAN</Badge>
             </div>
           </Link>
 

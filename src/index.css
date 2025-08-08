@@ -408,6 +408,11 @@
   }
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
 /* Advanced Keyframes */
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
