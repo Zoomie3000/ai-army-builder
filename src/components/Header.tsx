@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -19,6 +19,9 @@ import { Link, useLocation } from "react-router-dom";
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  useEffect(() => {
+    console.log("[Route]", location.pathname);
+  }, [location.pathname]);
 
   const groups = {
     solutions: [

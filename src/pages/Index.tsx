@@ -27,6 +27,9 @@ import { SEO } from "@/components/SEO";
 import { AgentFinderWizard } from "@/components/AgentFinderWizard";
 
 const Index = () => {
+  useEffect(() => {
+    console.log("[Page] Index mounted");
+  }, []);
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [companySize, setCompanySize] = useState("");

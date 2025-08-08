@@ -8,12 +8,16 @@ import { StructuredData } from "@/components/StructuredData";
 import { agents } from "@/data/agents";
 import { Link } from "react-router-dom";
 import { Building2, ClipboardList, Search, Handshake } from "lucide-react";
+import { useEffect } from "react";
 
 const industry = "real estate";
 const pageTitle = "Real Estate AI | Sentus.ai";
 const pageDesc = "Lead routing, listings, comps, compliance, and transaction coordination for brokers & operators.";
 
 export default function RealEstateIndustry() {
+  useEffect(() => {
+    console.log("[Page] RealEstate mounted");
+  }, []);
   const industryAgents = agents.filter(a => a.industries.includes("real-estate") || a.industries.includes("real estate"));
 
   return (
