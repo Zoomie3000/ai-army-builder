@@ -319,11 +319,11 @@ const Index = () => {
             </div>
 
             <div className="relative animate-fade-in-right">
-              <div className="glass-hero p-8 hover-lift mx-auto max-w-md">
+              <div className="glass-hero p-8 hover-lift mx-auto max-w-md overflow-hidden">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   <div className="glass-panel p-4 rounded-xl text-center">
                     <div className="text-sm text-muted-foreground">Avg Savings</div>
-                    <div className="text-2xl font-bold text-primary">$27.6K/mo</div>
+                    <div className="text-2xl font-bold text-primary break-words">$27.6K/mo</div>
                   </div>
                   <div className="glass-panel p-4 rounded-xl text-center">
                     <div className="text-sm text-muted-foreground">Deploy Time</div>
