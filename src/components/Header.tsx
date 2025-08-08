@@ -153,7 +153,7 @@ export const Header = () => {
                     Resources
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-background border border-border/40 shadow-lg rounded-lg p-4">
-                    <div className="grid gap-2">
+                    <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.resources.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md hover:bg-muted/60">
                           {item.name}
@@ -172,7 +172,7 @@ export const Header = () => {
                     Company
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-background border border-border/40 shadow-lg rounded-lg p-4">
-                    <div className="grid gap-2">
+                    <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.company.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md hover:bg-muted/60">
                           {item.name}
@@ -191,7 +191,7 @@ export const Header = () => {
                     Support
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-background border border-border/40 shadow-lg rounded-lg p-4">
-                    <div className="grid gap-2">
+                    <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.support.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md hover:bg-muted/60">
                           {item.name}
