@@ -36,6 +36,20 @@ import LogisticsIndustry from "./pages/industries/Logistics";
 import ProfessionalServicesIndustry from "./pages/industries/ProfessionalServices";
 import Trust from "./pages/Trust";
 import AgentInventory from "./pages/AgentInventory";
+import CookiePolicy from "./pages/CookiePolicy";
+import Compliance from "./pages/Compliance";
+import AcceptableUse from "./pages/AcceptableUse";
+import DPA from "./pages/DPA";
+import SLA from "./pages/SLA";
+import Security from "./pages/Security";
+import APITerms from "./pages/APITerms";
+import DMCA from "./pages/DMCA";
+import ResponsibleAI from "./pages/ResponsibleAI";
+import Accessibility from "./pages/Accessibility";
+import VulnerabilityDisclosure from "./pages/VulnerabilityDisclosure";
+import SystemRequirements from "./pages/SystemRequirements";
+import Changelog from "./pages/Changelog";
+import Status from "./pages/Status";
 const queryClient = new QueryClient();
 
 const App = () => (
