@@ -40,7 +40,8 @@ export const Footer = () => {
     { name: "Community", href: "/community" },
     { name: "Status", href: "/status" },
     { name: "System Requirements", href: "/system-requirements" },
-    { name: "Changelog", href: "/changelog" }
+    { name: "Changelog", href: "/changelog" },
+    { name: "Legal", href: "/legal" }
   ];
 
   const legalLinks = [
@@ -241,17 +242,10 @@ export const Footer = () => {
           </div>
           
           <div className="flex items-center flex-wrap gap-4">
-            {legalLinks.map((link) => (
-              <Link 
-                key={link.name}
-                to={link.href} 
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <span className="text-sm text-muted-foreground">•</span>
-            <Link to="/ai-disclosure" className="text-sm text-muted-foreground hover:text-primary">AI‑enhanced content</Link>
+          <div className="flex items-center gap-3">
+            <Link to="/contact?intent=sales" className="btn-primary px-4 py-2 rounded-md">Talk to Sales</Link>
+            <Link to="/contact?intent=demo" className="px-4 py-2 rounded-md border border-border hover:bg-muted transition-colors">Get a Demo</Link>
+          </div>
           </div>
         </div>
       </div>

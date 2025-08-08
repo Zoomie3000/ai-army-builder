@@ -59,6 +59,7 @@ import PrivacyContact from "./pages/PrivacyContact";
 import AuthorizedAgent from "./pages/AuthorizedAgent";
 import SecurityReport from "./pages/SecurityReport";
 import CookieConsent from "@/components/CookieConsent";
+import Legal from "./pages/Legal";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -123,6 +124,7 @@ const App = () => (
           <Route path="/legal-notices" element={<LegalNotices />} />
           <Route path="/privacy-contact" element={<PrivacyContact />} />
           <Route path="/authorized-agent" element={<AuthorizedAgent />} />
+          <Route path="/legal" element={<Legal />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
