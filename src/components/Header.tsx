@@ -66,7 +66,7 @@ export const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass-morphism border-b border-border/10">
+    <header className="fixed top-0 left-0 right-0 z-50 glass-morphism border-b border-border/10 pt-safe">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -80,8 +80,8 @@ export const Header = () => {
               </div>
             </div>
             <div className="block">
-              <span className="text-lg sm:text-xl font-bold sm:text-gradient-advanced text-primary">Sentus</span>
-              <span className="text-lg sm:text-xl font-bold text-primary">.ai</span>
+              <span className="text-lg sm:text-xl font-bold text-foreground sm:text-gradient-advanced">Sentus</span>
+              <span className="text-lg sm:text-xl font-bold text-foreground sm:text-primary">.ai</span>
               <Badge variant="secondary" className="ml-2 text-[10px] hidden sm:inline-flex">TITAN</Badge>
             </div>
           </Link>

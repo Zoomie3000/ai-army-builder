@@ -411,7 +411,20 @@
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Safe area helpers for iOS/Android notches */
+  .pt-safe { padding-top: max(0px, env(safe-area-inset-top)); }
+  .pb-safe { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
+  .pl-safe { padding-left: max(0px, env(safe-area-inset-left)); }
+  .pr-safe { padding-right: max(0px, env(safe-area-inset-right)); }
+
+  /* Dynamic viewport unit helper */
+  .min-h-dvh { min-height: 100dvh; }
+
+  /* Better headline wrapping */
+  .text-balance { text-wrap: balance; }
 }
+
 
 /* Advanced Keyframes */
 @keyframes gradient-shift {

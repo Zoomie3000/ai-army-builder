@@ -191,7 +191,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16 pt-safe">
       <StructuredData
         type="Organization"
         data={{
@@ -225,7 +225,7 @@ const Index = () => {
       </div>
 
       {/* Hero Section - Enhanced */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center section-padding">
+      <section ref={heroRef} className="relative min-h-[calc(100dvh-4rem)] flex items-center justify-center section-padding">
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 text-center lg:text-left">
