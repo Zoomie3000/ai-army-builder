@@ -224,7 +224,7 @@ const Index = () => {
             <div className="space-y-8">
               <div className="space-y-6 animate-fade-in-up">
                 <Badge className="bg-primary/20 text-primary border-primary/30 animate-pulse-soft px-4 py-2 text-sm font-semibold">
-                  🚀 722+ Elite AI Agents • Zero Resistance Deployment
+                  🚀 Deploy AI that pays for itself in weeks
                 </Badge>
                 
                 <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight">
@@ -264,10 +264,7 @@ const Index = () => {
                       <a href="#industries">Explore Industries</a>
                     </Button>
                     <div>
-                      {/* Agent Finder Wizard Trigger */}
-                      <div id="agent-finder-trigger">
-                        {/* component inserted below in file */}
-                      </div>
+                      <AgentFinderWizard triggerClassName="btn-secondary h-12" />
                     </div>
                   </div>
                 </div>
@@ -378,7 +375,7 @@ const Index = () => {
                 <div className="text-muted-foreground">Active Businesses</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent">722+</div>
+                <div className="text-3xl font-bold text-accent">24/7</div>
                 <div className="text-muted-foreground">AI Agents</div>
               </div>
               <div className="text-center">
