@@ -50,6 +50,15 @@ import VulnerabilityDisclosure from "./pages/VulnerabilityDisclosure";
 import SystemRequirements from "./pages/SystemRequirements";
 import Changelog from "./pages/Changelog";
 import Status from "./pages/Status";
+import AIDisclosure from "./pages/AIDisclosure";
+import PrivacyRights from "./pages/PrivacyRights";
+import DoNotSell from "./pages/DoNotSell";
+import CookieSettings from "./pages/CookieSettings";
+import LegalNotices from "./pages/LegalNotices";
+import PrivacyContact from "./pages/PrivacyContact";
+import AuthorizedAgent from "./pages/AuthorizedAgent";
+import SecurityReport from "./pages/SecurityReport";
+import CookieConsent from "@/components/CookieConsent";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -90,6 +99,31 @@ const App = () => (
           <Route path="/partners" element={<Partners />} />
           <Route path="/trust" element={<Trust />} />
           <Route path="/faq" element={<FAQ />} />
+
+          {/* Legal & Compliance */}
+          <Route path="/cookies" element={<CookiePolicy />} />
+          <Route path="/cookie-settings" element={<CookieSettings />} />
+          <Route path="/compliance" element={<Compliance />} />
+          <Route path="/acceptable-use" element={<AcceptableUse />} />
+          <Route path="/dpa" element={<DPA />} />
+          <Route path="/sla" element={<SLA />} />
+          <Route path="/security" element={<Security />} />
+          <Route path="/api-terms" element={<APITerms />} />
+          <Route path="/dmca" element={<DMCA />} />
+          <Route path="/responsible-ai" element={<ResponsibleAI />} />
+          <Route path="/accessibility" element={<Accessibility />} />
+          <Route path="/vulnerability-disclosure" element={<VulnerabilityDisclosure />} />
+          <Route path="/security-report" element={<SecurityReport />} />
+          <Route path="/system-requirements" element={<SystemRequirements />} />
+          <Route path="/changelog" element={<Changelog />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/ai-disclosure" element={<AIDisclosure />} />
+          <Route path="/privacy-rights" element={<PrivacyRights />} />
+          <Route path="/do-not-sell" element={<DoNotSell />} />
+          <Route path="/legal-notices" element={<LegalNotices />} />
+          <Route path="/privacy-contact" element={<PrivacyContact />} />
+          <Route path="/authorized-agent" element={<AuthorizedAgent />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -39,7 +39,7 @@ export const Footer = () => {
     { name: "Help Center", href: "/help" },
     { name: "Community", href: "/community" },
     { name: "Status", href: "/status" },
-    { name: "System Requirements", href: "/requirements" },
+    { name: "System Requirements", href: "/system-requirements" },
     { name: "Changelog", href: "/changelog" }
   ];
 
@@ -47,7 +47,11 @@ export const Footer = () => {
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
     { name: "Cookie Policy", href: "/cookies" },
-    { name: "Compliance", href: "/compliance" }
+    { name: "Acceptable Use", href: "/acceptable-use" },
+    { name: "DPA", href: "/dpa" },
+    { name: "Compliance", href: "/compliance" },
+    { name: "Do Not Sell/Share", href: "/do-not-sell" },
+    { name: "AI Disclosure", href: "/ai-disclosure" }
   ];
 
   return (
@@ -103,7 +107,7 @@ export const Footer = () => {
             <p className="text-muted-foreground leading-relaxed">
               Empowering businesses worldwide with intelligent AI automation. 
               Transform your operations, free your team, and accelerate growth 
-              with our catalog of 722+ specialized AI agents.
+              with our catalog of 778+ specialized AI agents.
             </p>
 
             <div className="space-y-3">
@@ -114,9 +118,9 @@ export const Footer = () => {
               <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 text-primary" />
                 <span className="space-x-2">
-                  <a href="mailto:contact@sentus.ai" className="hover:text-primary">contact@sentus.ai</a>
+                  <Link to="/contact" className="hover:text-primary">Contact form</Link>
                   <span>•</span>
-                  <a href="mailto:support@sentus.ai" className="hover:text-primary">support@sentus.ai</a>
+                  <Link to="/support" className="hover:text-primary">Support portal</Link>
                 </span>
               </div>
               <div className="flex items-center space-x-3 text-sm text-muted-foreground">
@@ -236,7 +240,7 @@ export const Footer = () => {
             © 2025 SENTUS AI, INC. All rights reserved. Made with ❤️ for the future of work.
           </div>
           
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center flex-wrap gap-4">
             {legalLinks.map((link) => (
               <Link 
                 key={link.name}
@@ -246,6 +250,8 @@ export const Footer = () => {
                 {link.name}
               </Link>
             ))}
+            <span className="text-sm text-muted-foreground">•</span>
+            <Link to="/ai-disclosure" className="text-sm text-muted-foreground hover:text-primary">AI‑enhanced content</Link>
           </div>
         </div>
       </div>
