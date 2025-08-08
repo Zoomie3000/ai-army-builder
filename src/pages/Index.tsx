@@ -21,6 +21,7 @@ import heroImage from "@/assets/hero-ai-command-center.jpg";
 import agentsImage from "@/assets/ai-agents-working.jpg";
 import roiImage from "@/assets/roi-dashboard.jpg";
 import { StructuredData } from "@/components/StructuredData";
+import { SEO } from "@/components/SEO";
 import { AgentFinderWizard } from "@/components/AgentFinderWizard";
 
 const Index = () => {
@@ -141,16 +142,16 @@ const Index = () => {
       industry: "Technology",
       metric: "300% faster processing"
     },
-    {
-      name: "Marcus Rodriguez", 
-      role: "Operations Director",
-      company: "Global Manufacturing Inc",
-      quote: "722 agents working around the clock? It's like having a tireless workforce that scales instantly. Our productivity has exploded while costs plummeted.",
-      savings: "$150K saved annually",
-      image: "MR",
-      industry: "Manufacturing",
-      metric: "85% cost reduction"
-    },
+          {
+            name: "Marcus Rodriguez", 
+            role: "Operations Director",
+            company: "Global Manufacturing Inc",
+            quote: "Our productivity has exploded while costs plummeted. The ROI was undeniable within the first month.",
+            savings: "$150K saved annually",
+            image: "MR",
+            industry: "Manufacturing",
+            metric: "85% cost reduction"
+          },
     {
       name: "Emily Watson",
       role: "CEO",
@@ -208,6 +209,7 @@ const Index = () => {
           ],
         }}
       />
+      <SEO title="AI Automation Platform | Sentus.ai" description="Deploy AI agents in minutes to automate finance, support, and ops. Save $27.6K/month. Free 14-day trial." canonical="https://sentus.ai/" type="website" />
       <Header />
       
       {/* Floating Background Elements */}
@@ -228,9 +230,9 @@ const Index = () => {
                 </Badge>
                 
                 <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight">
-                  <span className="text-gradient-advanced">Free Your Team.</span>
+                  <span className="text-gradient-advanced">AI Automation</span>
                   <br />
-                  <span className="text-glow-advanced">Evolve Your Business.</span>
+                  <span className="text-glow-advanced">That Frees Your Team</span>
                 </h1>
                 
                 <div className="space-y-4 text-xl lg:text-2xl text-muted-foreground max-w-2xl">
@@ -313,25 +315,30 @@ const Index = () => {
 
             <div className="relative animate-fade-in-right">
               <div className="glass-hero p-8 hover-lift">
-                <img 
-                  src={heroImage} 
-                  alt="Sentus.ai AI Command Center with autonomous agents orchestrating business operations" 
-                  className="w-full h-auto rounded-2xl shadow-2xl"
-                  style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-                />
-                
-                {/* Floating metrics */}
-                <div className="absolute -top-6 -left-6 glass-panel p-4 animate-float-gentle">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-400">99.7%</div>
-                    <div className="text-sm text-muted-foreground">Accuracy Rate</div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                  <div className="glass-panel p-4 rounded-xl text-center">
+                    <div className="text-sm text-muted-foreground">Avg Savings</div>
+                    <div className="text-2xl font-bold text-primary">$27.6K/mo</div>
                   </div>
-                </div>
-                
-                <div className="absolute -bottom-6 -right-6 glass-panel p-4 animate-float-gentle" style={{ animationDelay: '2s' }}>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-primary">$27.6K</div>
-                    <div className="text-sm text-muted-foreground">Avg Monthly Savings</div>
+                  <div className="glass-panel p-4 rounded-xl text-center">
+                    <div className="text-sm text-muted-foreground">Deploy Time</div>
+                    <div className="text-2xl font-bold text-accent">5 min</div>
+                  </div>
+                  <div className="glass-panel p-4 rounded-xl text-center">
+                    <div className="text-sm text-muted-foreground">Accuracy</div>
+                    <div className="text-2xl font-bold text-green-400">99.7%</div>
+                  </div>
+                  <div className="glass-panel p-4 rounded-xl text-center">
+                    <div className="text-sm text-muted-foreground">Use Cases</div>
+                    <div className="text-2xl font-bold">150+</div>
+                  </div>
+                  <div className="glass-panel p-4 rounded-xl text-center">
+                    <div className="text-sm text-muted-foreground">Integrations</div>
+                    <div className="text-2xl font-bold">50+</div>
+                  </div>
+                  <div className="glass-panel p-4 rounded-xl text-center">
+                    <div className="text-sm text-muted-foreground">CSAT Lift</div>
+                    <div className="text-2xl font-bold text-secondary">+23%</div>
                   </div>
                 </div>
               </div>
@@ -446,6 +453,7 @@ const Index = () => {
                           src={key === 'invoice' ? roiImage : key === 'support' ? agentsImage : heroImage} 
                           alt={`${demo.title} in action`}
                           className="w-full h-auto rounded-lg"
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -623,7 +631,7 @@ const Index = () => {
           <div className="text-center space-y-6 mb-16">
             <h2 className="text-5xl font-bold text-gradient-advanced">Meet Your Elite AI Army</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              722+ battle-tested agents organized by specialty, ready to eliminate your biggest operational bottlenecks
+              Hundreds of battle-tested agents organized by specialty, ready to eliminate your biggest operational bottlenecks
             </p>
           </div>
 
@@ -680,9 +688,10 @@ const Index = () => {
                 src={agentsImage} 
                 alt="Multiple AI agents collaborating on complex business processes" 
                 className="mx-auto rounded-lg shadow-2xl mb-8 max-w-lg" 
+                loading="lazy"
               />
               <div className="space-y-4">
-                <h3 className="text-3xl font-bold text-gradient-advanced">Ready to Deploy 722+ More Agents?</h3>
+                <h3 className="text-3xl font-bold text-gradient-advanced">Explore the Full Agent Catalog</h3>
                 <p className="text-xl text-muted-foreground">
                   From basic automation to advanced AI reasoning, we have agents for every business function
                 </p>
