@@ -215,7 +215,7 @@ const Index = () => {
       <Header />
       
       {/* Floating Background Elements */}
-      <div className="fixed inset-0 pointer-events-none">
+      <div className="fixed inset-0 -z-10 pointer-events-none">
         <div className="organic-blob w-96 h-96 top-10 right-10 opacity-30" />
         <div className="organic-blob organic-blob-2 w-80 h-80 bottom-20 left-10 opacity-20" />
         <div className="organic-blob w-64 h-64 top-1/2 left-1/2 opacity-25" />
