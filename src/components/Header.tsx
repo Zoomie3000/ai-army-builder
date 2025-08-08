@@ -96,7 +96,7 @@ export const Header = () => {
                     Solutions
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-background border border-border/40 shadow-lg rounded-lg p-4">
-                    <div className="grid gap-2 sm:grid-cols-2">
+                    <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.solutions.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md hover:bg-muted/60">
                           {item.name}
@@ -115,7 +115,7 @@ export const Header = () => {
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-background border border-border/40 shadow-lg rounded-lg p-4">
-                    <div className="grid gap-2 sm:grid-cols-2">
+                    <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.services.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md hover:bg-muted/60">
                           {item.name}
@@ -134,7 +134,7 @@ export const Header = () => {
                     Industries
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-background border border-border/40 shadow-lg rounded-lg p-4">
-                    <div className="grid gap-2 sm:grid-cols-2">
+                    <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.industries.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md hover:bg-muted/60">
                           {item.name}
