@@ -17,9 +17,11 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { InteractiveROICalculator } from "@/components/InteractiveROICalculator";
-import heroImage from "@/assets/hero-ai-command-center.jpg";
-import agentsImage from "@/assets/ai-agents-working.jpg";
-import roiImage from "@/assets/roi-dashboard.jpg";
+import lineAutomation from "@/assets/illustrations/line-automation.webp";
+import flatAgents from "@/assets/illustrations/flat-ai-agents.webp";
+import flatTutorials from "@/assets/illustrations/flat-tutorials.webp";
+import isometricAutomation from "@/assets/illustrations/isometric-automation.webp";
+import isometricAgents from "@/assets/illustrations/isometric-ai-agents.webp";
 import { StructuredData } from "@/components/StructuredData";
 import { SEO } from "@/components/SEO";
 import { AgentFinderWizard } from "@/components/AgentFinderWizard";
@@ -450,8 +452,8 @@ const Index = () => {
                     <div className="relative">
                       <div className="glass-hero p-6">
                         <img 
-                          src={key === 'invoice' ? roiImage : key === 'support' ? agentsImage : heroImage} 
-                          alt={`${demo.title} in action`}
+                          src={key === 'invoice' ? lineAutomation : key === 'support' ? flatAgents : flatTutorials} 
+                          alt={`${demo.title} illustration`}
                           className="w-full h-auto rounded-lg"
                           loading="lazy"
                         />
@@ -606,8 +608,8 @@ const Index = () => {
             <div className="relative animate-fade-in-right">
               <div className="glass-hero p-6">
                 <img 
-                  src={roiImage} 
-                  alt="Real-time ROI dashboard showing dramatic cost savings and efficiency improvements" 
+                  src={isometricAutomation} 
+                  alt="Friendly illustration of AI automation improving operations" 
                   className="w-full h-auto rounded-lg shadow-2xl"
                 />
               </div>
@@ -685,8 +687,8 @@ const Index = () => {
           <div className="text-center space-y-8">
             <div className="glass-hero p-8 max-w-4xl mx-auto">
               <img 
-                src={agentsImage} 
-                alt="Multiple AI agents collaborating on complex business processes" 
+                src={isometricAgents} 
+                alt="AI agents collaborating across business processes (friendly illustration)" 
                 className="mx-auto rounded-lg shadow-2xl mb-8 max-w-lg" 
                 loading="lazy"
               />
@@ -761,150 +763,20 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Enhanced Pricing */}
-      <section id="pricing" className="section-divider-reverse section-padding">
-        <div className="container mx-auto px-6">
-          <div className="text-center space-y-6 mb-16">
-            <h2 className="text-5xl font-bold text-gradient-advanced">Choose Your AI Army Size</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              All plans include 14-day free trial, setup assistance, and our 30-day ROI guarantee
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Starter Plan */}
-            <Card className="glass-card hover-lift">
-              <CardHeader className="text-center">
-                <CardTitle className="text-3xl">Starter</CardTitle>
-                <CardDescription className="text-lg">Perfect for small teams</CardDescription>
-                <div className="text-5xl font-bold text-primary mt-4">$299</div>
-                <p className="text-muted-foreground text-lg">per month</p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <ul className="space-y-4">
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">5 active agents</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">1,000 tasks/month</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Email support</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Basic integrations</span>
-                  </li>
-                </ul>
-                <Button className="w-full btn-ghost text-lg py-6">Start Free Trial</Button>
-                <p className="text-center text-sm text-muted-foreground">
-                  Typical savings: $3,000-5,000/month
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Professional Plan - Featured */}
-            <Card className="glass-card border-primary/50 scale-105 hover-lift relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent"></div>
-              <CardHeader className="text-center">
-                <Badge className="w-fit mx-auto bg-primary text-primary-foreground text-sm px-4 py-2 mb-4">
-                  Most Popular
-                </Badge>
-                <CardTitle className="text-3xl">Professional</CardTitle>
-                <CardDescription className="text-lg">For growing businesses</CardDescription>
-                <div className="text-5xl font-bold text-primary mt-4">$599</div>
-                <p className="text-muted-foreground text-lg">per month</p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <ul className="space-y-4">
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">25 active agents</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">10,000 tasks/month</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Priority support</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Advanced integrations</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Custom workflows</span>
-                  </li>
-                </ul>
-                <Button className="w-full btn-primary text-lg py-6">Start Free Trial</Button>
-                <p className="text-center text-sm text-muted-foreground">
-                  Typical savings: $8,000-15,000/month
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Business Plan */}
-            <Card className="glass-card hover-lift">
-              <CardHeader className="text-center">
-                <CardTitle className="text-3xl">Business</CardTitle>
-                <CardDescription className="text-lg">Unlimited automation</CardDescription>
-                <div className="text-5xl font-bold text-primary mt-4">$999</div>
-                <p className="text-muted-foreground text-lg">per month</p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <ul className="space-y-4">
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Unlimited agents</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Unlimited tasks</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">24/7 phone support</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Dedicated success manager</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                    <span className="text-lg">Custom agent development</span>
-                  </li>
-                </ul>
-                <Button className="w-full btn-ghost text-lg py-6">Start Free Trial</Button>
-                <p className="text-center text-sm text-muted-foreground">
-                  Typical savings: $20,000-50,000/month
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-16 space-y-6">
-            <p className="text-xl text-muted-foreground">
-              Need enterprise solutions? <Button variant="link" className="text-primary text-xl p-0">Contact our sales team</Button>
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground">
-              <div className="flex items-center space-x-2">
-                <Shield className="h-4 w-4" />
-                <span>30-day money-back guarantee</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Zap className="h-4 w-4" />
-                <span>5-minute setup</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Users className="h-4 w-4" />
-                <span>Free migration assistance</span>
-              </div>
-            </div>
+      {/* Plans & Consultation (no pricing on homepage) */}
+      <section className="section-divider-reverse section-padding">
+        <div className="container mx-auto px-6 text-center space-y-6">
+          <h2 className="text-5xl font-bold text-gradient-advanced">Get a tailored plan</h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            We’ll recommend the right mix of agents and the ROI you can expect for your team—no pricing shown here.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild className="btn-primary text-lg px-8 py-6">
+              <a href="/contact">Talk to sales</a>
+            </Button>
+            <Button asChild variant="outline" className="btn-ghost text-lg px-8 py-6">
+              <a href="/pricing">View pricing</a>
+            </Button>
           </div>
         </div>
       </section>
