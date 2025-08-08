@@ -35,6 +35,7 @@ import InsuranceIndustry from "./pages/industries/Insurance";
 import LogisticsIndustry from "./pages/industries/Logistics";
 import ProfessionalServicesIndustry from "./pages/industries/ProfessionalServices";
 import Trust from "./pages/Trust";
+import AgentInventory from "./pages/AgentInventory";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -61,6 +62,7 @@ const App = () => (
           <Route path="/industries/professional-services" element={<ProfessionalServicesIndustry />} />
           <Route path="/education" element={<Education />} />
           <Route path="/agents" element={<Agents />} />
+          <Route path="/agents/inventory" element={<AgentInventory />} />
           <Route path="/agents/:slug" element={<AgentDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />

@@ -403,6 +403,64 @@ const Index = () => {
         </div>
       </section>
 
+      <StructuredData
+        type="ItemList"
+        data={{
+          name: "Sentus.ai Agent Inventory",
+          numberOfItems: 778,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Finance", item: { "@type": "Thing", additionalProperty: { "@type": "PropertyValue", name: "count", value: 487 } } },
+            { "@type": "ListItem", position: 2, name: "Legal", item: { "@type": "Thing", additionalProperty: { "@type": "PropertyValue", name: "count", value: 125 } } },
+            { "@type": "ListItem", position: 3, name: "Operations", item: { "@type": "Thing", additionalProperty: { "@type": "PropertyValue", name: "count", value: 86 } } },
+            { "@type": "ListItem", position: 4, name: "Healthcare", item: { "@type": "Thing", additionalProperty: { "@type": "PropertyValue", name: "count", value: 72 } } },
+            { "@type": "ListItem", position: 5, name: "Real Estate", item: { "@type": "Thing", additionalProperty: { "@type": "PropertyValue", name: "count", value: 6 } } },
+          ],
+        }}
+      />
+
+      {/* 778 Agent Claim Band */}
+      <section className="section-padding">
+        <div className="container mx-auto px-6">
+          <div className="glass-card p-6 sm:p-8 rounded-2xl">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-balance">World’s Largest AI Agent Collection</h2>
+                <p className="text-muted-foreground mt-2">778 agents across Finance, Legal, Healthcare, Operations and more.</p>
+              </div>
+              <Button asChild className="btn-secondary">
+                <a href="/agents/inventory" aria-label="Explore the 778 agent inventory">Explore the 778‑agent inventory</a>
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">778</div>
+                <div className="text-muted-foreground">Total Agents</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-accent">487</div>
+                <div className="text-muted-foreground">Finance</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-secondary">125</div>
+                <div className="text-muted-foreground">Legal</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold">86</div>
+                <div className="text-muted-foreground">Operations</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold">72</div>
+                <div className="text-muted-foreground">Healthcare</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold">6</div>
+                <div className="text-muted-foreground">Real Estate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Interactive Demo Section */}
       <section className="flowing-section section-padding">
         <div className="container mx-auto px-6">
