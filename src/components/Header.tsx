@@ -70,7 +70,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link to="/" aria-label="Sentus.ai home" className="flex items-center space-x-3 group">
             <div className="relative">
               <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center">
                 <Bot className="w-6 h-6 text-primary-foreground" />
@@ -80,8 +80,8 @@ export const Header = () => {
               </div>
             </div>
             <div className="block">
-              <span className="text-lg sm:text-xl font-bold text-gradient-advanced">Sentus</span>
-              <span className="text-lg sm:text-xl font-bold text-foreground">.ai</span>
+              <span className="text-lg sm:text-xl font-bold sm:text-gradient-advanced text-primary">Sentus</span>
+              <span className="text-lg sm:text-xl font-bold text-primary">.ai</span>
               <Badge variant="secondary" className="ml-2 text-[10px] hidden sm:inline-flex">TITAN</Badge>
             </div>
           </Link>
