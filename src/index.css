@@ -32,8 +32,14 @@
   .glass-hero > div {
     font-size: 1.5rem !important;
   }
+  [data-radix-popper-content-wrapper] {
+    position: fixed !important;
+    width: 100vw !important;
+  }
+  button, a { min-height: 44px; }
 }
 
+html, body { overflow-x: hidden; }
 /* SENTUS.AI DESIGN SYSTEM V5.0 - AI Catalyst Professional Light Theme */
 
 @layer base {
