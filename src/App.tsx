@@ -1,7 +1,6 @@
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
@@ -64,72 +63,70 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/solutions" element={<Solutions />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/consulting" element={<Consulting />} />
-          <Route path="/services/custom-agents" element={<CustomAgents />} />
-          <Route path="/services/integrations" element={<Integrations />} />
-          <Route path="/industries" element={<Industries />} />
-          <Route path="/industries/healthcare" element={<HealthcareIndustry />} />
-          <Route path="/industries/finance" element={<FinanceIndustry />} />
-          <Route path="/industries/retail" element={<RetailIndustry />} />
-          <Route path="/industries/manufacturing" element={<ManufacturingIndustry />} />
-          <Route path="/industries/real-estate" element={<RealEstateIndustry />} />
-          <Route path="/industries/insurance" element={<InsuranceIndustry />} />
-          <Route path="/industries/logistics" element={<LogisticsIndustry />} />
-          <Route path="/industries/professional-services" element={<ProfessionalServicesIndustry />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/agents" element={<Agents />} />
-          <Route path="/agents/inventory" element={<AgentInventory />} />
-          <Route path="/agents/:slug" element={<AgentDetail />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/press" element={<Press />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/trust" element={<Trust />} />
-          <Route path="/faq" element={<FAQ />} />
+    <Toaster />
+    <Sonner />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/solutions" element={<Solutions />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/consulting" element={<Consulting />} />
+        <Route path="/services/custom-agents" element={<CustomAgents />} />
+        <Route path="/services/integrations" element={<Integrations />} />
+        <Route path="/industries" element={<Industries />} />
+        <Route path="/industries/healthcare" element={<HealthcareIndustry />} />
+        <Route path="/industries/finance" element={<FinanceIndustry />} />
+        <Route path="/industries/retail" element={<RetailIndustry />} />
+        <Route path="/industries/manufacturing" element={<ManufacturingIndustry />} />
+        <Route path="/industries/real-estate" element={<RealEstateIndustry />} />
+        <Route path="/industries/insurance" element={<InsuranceIndustry />} />
+        <Route path="/industries/logistics" element={<LogisticsIndustry />} />
+        <Route path="/industries/professional-services" element={<ProfessionalServicesIndustry />} />
+        <Route path="/education" element={<Education />} />
+        <Route path="/agents" element={<Agents />} />
+        <Route path="/agents/inventory" element={<AgentInventory />} />
+        <Route path="/agents/:slug" element={<AgentDetail />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/press" element={<Press />} />
+        <Route path="/partners" element={<Partners />} />
+        <Route path="/trust" element={<Trust />} />
+        <Route path="/faq" element={<FAQ />} />
 
-          {/* Legal & Compliance */}
-          <Route path="/cookies" element={<CookiePolicy />} />
-          <Route path="/cookie-settings" element={<CookieSettings />} />
-          <Route path="/compliance" element={<Compliance />} />
-          <Route path="/acceptable-use" element={<AcceptableUse />} />
-          <Route path="/dpa" element={<DPA />} />
-          <Route path="/sla" element={<SLA />} />
-          <Route path="/security" element={<Security />} />
-          <Route path="/api-terms" element={<APITerms />} />
-          <Route path="/dmca" element={<DMCA />} />
-          <Route path="/responsible-ai" element={<ResponsibleAI />} />
-          <Route path="/accessibility" element={<Accessibility />} />
-          <Route path="/vulnerability-disclosure" element={<VulnerabilityDisclosure />} />
-          <Route path="/security-report" element={<SecurityReport />} />
-          <Route path="/system-requirements" element={<SystemRequirements />} />
-          <Route path="/changelog" element={<Changelog />} />
-          <Route path="/status" element={<Status />} />
-          <Route path="/ai-disclosure" element={<AIDisclosure />} />
-          <Route path="/privacy-rights" element={<PrivacyRights />} />
-          <Route path="/do-not-sell" element={<DoNotSell />} />
-          <Route path="/legal-notices" element={<LegalNotices />} />
-          <Route path="/privacy-contact" element={<PrivacyContact />} />
-          <Route path="/authorized-agent" element={<AuthorizedAgent />} />
-          <Route path="/legal" element={<Legal />} />
+        {/* Legal & Compliance */}
+        <Route path="/cookies" element={<CookiePolicy />} />
+        <Route path="/cookie-settings" element={<CookieSettings />} />
+        <Route path="/compliance" element={<Compliance />} />
+        <Route path="/acceptable-use" element={<AcceptableUse />} />
+        <Route path="/dpa" element={<DPA />} />
+        <Route path="/sla" element={<SLA />} />
+        <Route path="/security" element={<Security />} />
+        <Route path="/api-terms" element={<APITerms />} />
+        <Route path="/dmca" element={<DMCA />} />
+        <Route path="/responsible-ai" element={<ResponsibleAI />} />
+        <Route path="/accessibility" element={<Accessibility />} />
+        <Route path="/vulnerability-disclosure" element={<VulnerabilityDisclosure />} />
+        <Route path="/security-report" element={<SecurityReport />} />
+        <Route path="/system-requirements" element={<SystemRequirements />} />
+        <Route path="/changelog" element={<Changelog />} />
+        <Route path="/status" element={<Status />} />
+        <Route path="/ai-disclosure" element={<AIDisclosure />} />
+        <Route path="/privacy-rights" element={<PrivacyRights />} />
+        <Route path="/do-not-sell" element={<DoNotSell />} />
+        <Route path="/legal-notices" element={<LegalNotices />} />
+        <Route path="/privacy-contact" element={<PrivacyContact />} />
+        <Route path="/authorized-agent" element={<AuthorizedAgent />} />
+        <Route path="/legal" element={<Legal />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   </QueryClientProvider>
 );
 
