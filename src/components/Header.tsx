@@ -99,7 +99,7 @@ export const Header = () => {
                   }`}>
                     Solutions
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 top-full mt-2 z-50 bg-background text-foreground border border-border/40 shadow-lg rounded-lg p-4">
+                  <NavigationMenuContent className="z-[100] bg-popover text-popover-foreground border border-border/40 shadow-lg rounded-lg p-4">
                     <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.solutions.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md text-foreground hover:text-primary hover:bg-muted/60">
@@ -118,7 +118,7 @@ export const Header = () => {
                   }`}>
                     Services
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 top-full mt-2 z-50 bg-background text-foreground border border-border/40 shadow-lg rounded-lg p-4">
+                  <NavigationMenuContent className="z-[100] bg-popover text-popover-foreground border border-border/40 shadow-lg rounded-lg p-4">
                     <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.services.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md text-foreground hover:text-primary hover:bg-muted/60">
@@ -137,7 +137,7 @@ export const Header = () => {
                   }`}>
                     Industries
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 top-full mt-2 z-50 bg-background text-foreground border border-border/40 shadow-lg rounded-lg p-4">
+                  <NavigationMenuContent className="z-[100] bg-popover text-popover-foreground border border-border/40 shadow-lg rounded-lg p-4">
                     <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.industries.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md text-foreground hover:text-primary hover:bg-muted/60">
@@ -156,7 +156,7 @@ export const Header = () => {
                   }`}>
                     Resources
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 top-full mt-2 z-50 bg-background text-foreground border border-border/40 shadow-lg rounded-lg p-4">
+                  <NavigationMenuContent className="z-[100] bg-popover text-popover-foreground border border-border/40 shadow-lg rounded-lg p-4">
                     <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.resources.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md text-foreground hover:text-primary hover:bg-muted/60">
@@ -175,7 +175,7 @@ export const Header = () => {
                   }`}>
                     Company
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 top-full mt-2 z-50 bg-background text-foreground border border-border/40 shadow-lg rounded-lg p-4">
+                  <NavigationMenuContent className="z-[100] bg-popover text-popover-foreground border border-border/40 shadow-lg rounded-lg p-4">
                     <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.company.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md text-foreground hover:text-primary hover:bg-muted/60">
@@ -194,7 +194,7 @@ export const Header = () => {
                   }`}>
                     Support
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0 top-full mt-2 z-50 bg-background text-foreground border border-border/40 shadow-lg rounded-lg p-4">
+                  <NavigationMenuContent className="z-[100] bg-popover text-popover-foreground border border-border/40 shadow-lg rounded-lg p-4">
                     <div className="flex flex-col gap-1 min-w-[14rem] max-h-96 overflow-y-auto">
                       {groups.support.map((item) => (
                         <Link key={item.name} to={item.href} className="block px-3 py-2 rounded-md text-foreground hover:text-primary hover:bg-muted/60">
