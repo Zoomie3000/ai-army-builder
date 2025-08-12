@@ -27,7 +27,7 @@ export const Header = () => {
     solutions: [
       { name: "Solutions Overview", href: "/solutions" },
       { name: "Agent Catalog", href: "/agents" },
-      { name: "Agent Inventory (778)", href: "/agents/inventory" },
+      { name: "Agent Inventory", href: "/agents/inventory" },
     ],
     services: [
       { name: "Consulting", href: "/services/consulting" },

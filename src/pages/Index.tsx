@@ -258,7 +258,7 @@ const Index = () => {
                       placeholder="Enter your work email to deploy AI army" 
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="bg-muted/50 border-muted text-lg h-14 text-white placeholder:text-muted-foreground"
+                      className="bg-muted/50 border-border text-lg h-14 text-foreground placeholder:text-muted-foreground"
                     />
                   </div>
                   <Button onClick={handleFreeTrial} size="lg" className="btn-primary text-lg px-8 h-14 min-w-[200px]">
@@ -529,7 +529,7 @@ const Index = () => {
       </section>
 
       {/* Industry Solutions */}
-      <section id="solutions" className="section-divider-reverse section-padding">
+      <section id="industries" className="section-divider-reverse section-padding">
         <div className="container mx-auto px-6">
           <div className="text-center space-y-6 mb-16">
             <h2 className="text-5xl font-bold text-gradient-advanced">Industry-Specific AI Armies</h2>
@@ -758,8 +758,8 @@ const Index = () => {
                 <p className="text-xl text-muted-foreground">
                   From basic automation to advanced AI reasoning, we have agents for every business function
                 </p>
-                  <Button size="lg" className="btn-primary text-xl px-12 py-6 mx-auto">
-                    Explore Full Agent Catalog <ArrowRight className="ml-2 h-6 w-6" />
+                  <Button asChild size="lg" className="btn-primary text-xl px-12 py-6 mx-auto">
+                    <a href="/agents">Explore Full Agent Catalog <ArrowRight className="ml-2 h-6 w-6" /></a>
                   </Button>
               </div>
             </div>
@@ -869,7 +869,7 @@ const Index = () => {
                     placeholder="Enter your work email to deploy AI army" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-muted/50 border-muted text-xl h-16 text-white placeholder:text-muted-foreground max-w-md"
+                    className="bg-muted/50 border-border text-xl h-16 text-foreground placeholder:text-muted-foreground max-w-md"
                   />
                   <Button onClick={handleFreeTrial} size="lg" className="btn-primary text-2xl px-16 h-16 min-w-[250px]">
                     Unleash AI Army

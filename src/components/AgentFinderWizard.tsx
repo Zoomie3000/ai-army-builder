@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -66,14 +66,17 @@ export const AgentFinderWizard = ({ triggerClassName }: AgentFinderWizardProps) 
             <span>AI Solution Finder</span>
             <Badge variant="secondary" className="ml-2">2 min</Badge>
           </DialogTitle>
+          <DialogDescription className="text-sm text-muted-foreground">
+            Answer a few quick questions and we’ll recommend the best agents for you.
+          </DialogDescription>
         </DialogHeader>
 
-        <Tabs value={`step-${step}`} className="mt-2">
+        <Tabs value={`step-${step}`} onValueChange={(v) => { const n = parseInt(v.split('-')[1]); if (!Number.isNaN(n)) setStep(n); }} className="mt-2">
           <TabsList className="grid grid-cols-4 w-full">
-            <TabsTrigger value="step-1">1</TabsTrigger>
-            <TabsTrigger value="step-2">2</TabsTrigger>
-            <TabsTrigger value="step-3">3</TabsTrigger>
-            <TabsTrigger value="step-4">4</TabsTrigger>
+            <TabsTrigger value="step-1">Industry</TabsTrigger>
+            <TabsTrigger value="step-2">Size</TabsTrigger>
+            <TabsTrigger value="step-3">Priority</TabsTrigger>
+            <TabsTrigger value="step-4">Deploy</TabsTrigger>
           </TabsList>
 
           <TabsContent value="step-1" className="space-y-4">
